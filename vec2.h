@@ -7,7 +7,7 @@ struct vec2 {
 	vec2();
 	vec2(float);
 	vec2(float, float);
-//Element indexing
+// Element indexing
 	float& operator[](const int);
 // Arithmetic operators
 	vec2& operator+=(const vec2&);
@@ -20,6 +20,10 @@ struct vec2 {
 	vec2 operator-(const vec2&);
 	float length();
 };
+
+// Equality
+bool operator==(const vec2&, const vec2&);
+bool operator!=(const vec2&, const vec2&);
 
 // Addition
 vec2 operator+(vec2, const vec2&);

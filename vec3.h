@@ -21,6 +21,10 @@ struct vec3 {
 	float length();
 };
 
+// Equality
+bool operator==(const vec3&, const vec3&);
+bool operator!=(const vec3&, const vec3&);
+
 // Addition
 vec3 operator+(vec3, const vec3&);
 

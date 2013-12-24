@@ -18,6 +18,14 @@ float& vec4::operator[](const int i) {
 	throw std::out_of_range(i + " out of range on vec4");
 }
 
+// Equality
+bool operator==(const vec4 &a, const vec4 &b) {
+	return a.x == b.x && a.y == b.y && a.z == b.z && a.w == b.w;
+}
+bool operator!=(const vec4 &a, const vec4 &b) {
+	return a.x != b.x || a.y != b.y || a.z != b.z || a.w != b.w;
+}
+
 // Addition
 vec4& vec4::operator+=(const vec4 &v) {
 	x += v.x; y += v.y;

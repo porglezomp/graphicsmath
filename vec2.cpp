@@ -15,6 +15,14 @@ float& vec2::operator[](const int i) {
 	throw std::out_of_range(i + " out of range on vec4");
 }
 
+// Equality
+bool operator==(const vec2 &a, const vec2 &b) {
+	return a.x == b.x && a.y == b.y;
+}
+bool operator!=(const vec2 &a, const vec2 &b) {
+	return a.x != b.x || a.y != b.y;
+}
+
 // Addition
 vec2& vec2::operator+=(const vec2 &v) {
 	x += v.x; y += v.y;
