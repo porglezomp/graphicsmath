@@ -1,6 +1,6 @@
 TESTEXE=Test.exe
 TEST=test.o
-OBJS=vec4.o
+OBJS=vec4.o vec3.o vec2.o
 
 all: $(TESTEXE) $(OBJS)
 
