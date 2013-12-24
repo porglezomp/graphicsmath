@@ -1,5 +1,6 @@
 #include "vec4.h"
 #include "math.h"
+#include "stdio.h"
 
 // Constructors
 vec4::vec4() : x(0), y(0), z(0), w(0) { }
@@ -39,7 +40,7 @@ vec4& vec4::operator*=(const vec4 &v) {
 	return *this;
 }
 vec4 operator*(vec4 a, const vec4 &b) {
-	reutrn a += b;
+	return a += b;
 }
 
 // Scalar multiplication of the vector
@@ -88,5 +89,5 @@ float length(const vec4 &v) {
 
 // Dot product
 float dot(const vec4 &a, const vec4 &b) {
-	return a.x*b.x + a.y*b.y + a.z*b.z + a*w*b.w;
+	return a.x*b.x + a.y*b.y + a.z*b.z + a.w*b.w;
 }
