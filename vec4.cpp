@@ -1,12 +1,22 @@
 #include "vec4.h"
 #include "math.h"
-#include "stdio.h"
+#include <stdexcept>
+#include <string>
 
 // Constructors
 vec4::vec4() : x(0), y(0), z(0), w(0) { }
 vec4::vec4(float v) : x(v), y(v), z(v), w(v) { }
 vec4::vec4(float x, float y, float z, float w) :
 			x(x), y(y), z(z), w(w) { }
+
+// Element Indexing
+float& vec4::operator[](const int i) {
+	if (i == 0) return x;
+	if (i == 1) return y;
+	if (i == 2) return z;
+	if (i == 3) return w;
+	throw std::out_of_range(i + " out of range on vec4");
+}
 
 // Addition
 vec4& vec4::operator+=(const vec4 &v) {

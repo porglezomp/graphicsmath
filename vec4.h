@@ -3,12 +3,12 @@
 
 struct vec4 {
 	float x, y, z, w;
-
 // Constructors
 	vec4();
 	vec4(float);
 	vec4(float, float, float, float);
-
+//Element indexing
+	float& operator[](const int);
 // Arithmetic operators
 	vec4& operator+=(const vec4&);
 	vec4& operator-=(const vec4&);
@@ -16,10 +16,8 @@ struct vec4 {
 	vec4& operator*=(const float);
 	vec4& operator/=(const vec4&);
 	vec4& operator/=(const float);
-
 // Negation
 	vec4 operator-(const vec4&);
-
 	float length();
 };
 
