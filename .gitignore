@@ -1,3 +1,21 @@
+# Objects
 *.o
+*.lo
+
+# Libraries
+*.a
+
+# Executables
 *.exe
+Test
+
+# Core dumps
 core
+
+# Ignores for the Automake/Autoconf stuff
+*.log
+*.guess
+*.cache
+*.status
+*.pub
+*.deps
