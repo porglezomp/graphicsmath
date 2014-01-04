@@ -25,9 +25,9 @@ mat4 mat4::identity() {
 
 // Row indexing
 vec4& mat4::operator[](const int i) {
-	if (i == 0) return row1;
-	if (i == 1) return row2;
-	if (i == 2) return row3;
-	if (i == 3) return row4;
+	if (i == 0) return vec4(row1.x, row2.x, row3.x, row4.x);
+	if (i == 1) return vec4(row1.y, row2.y, row3.y, row4.y);
+	if (i == 2) return vec4(row1.z, row2.z, row3.z, row4.z);
+	if (i == 3) return vec4(row1.w, row2.w, row3.w, row4.w);
 	throw std::out_of_range(i + " out of range for mat4.");
 }
