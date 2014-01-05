@@ -9,7 +9,7 @@ vec4::vec4(float v) : x(v), y(v), z(v), w(v) { }
 vec4::vec4(float x, float y, float z, float w) :
 			x(x), y(y), z(z), w(w) { }
 
-// Conversion Constructors
+// Conversion constructors
 vec4::vec4(const vec3 &v) : x(v.x), y(v.y), z(v.z), w(0) { }
 vec4::vec4(const vec3 &v, float w) : x(v.x), y(v.y), z(v.z), w(w) { }
 vec4::vec4(float x, const vec3 &v) : x(x), y(v.x), z(v.y), w(v.z) { }
@@ -18,8 +18,8 @@ vec4::vec4(const vec2 &v, float z, float w) : x(v.x), y(v.y), z(z), w(w) { }
 vec4::vec4(float x, const vec2 &v, float w) : x(x), y(v.x), z(v.y), w(w) { }
 vec4::vec4(float x, float y, const vec2 &v) : x(x), y(y), z(v.x), w(v.y) { }
 
-// Element Indexing
-float& vec4::operator[](const int i) {
+// Element indexing
+float& vec4::operator[] (const int i) {
 	if (i == 0) return x;
 	if (i == 1) return y;
 	if (i == 2) return z;
@@ -28,20 +28,20 @@ float& vec4::operator[](const int i) {
 }
 
 // Equality
-bool operator==(const vec4 &a, const vec4 &b) {
+bool operator== (const vec4 &a, const vec4 &b) {
 	return a.x == b.x && a.y == b.y && a.z == b.z && a.w == b.w;
 }
-bool operator!=(const vec4 &a, const vec4 &b) {
+bool operator!= (const vec4 &a, const vec4 &b) {
 	return a.x != b.x || a.y != b.y || a.z != b.z || a.w != b.w;
 }
 
 // Addition
-vec4& vec4::operator+=(const vec4 &v) {
+vec4& vec4::operator+= (const vec4 &v) {
 	x += v.x; y += v.y;
 	z += v.z; w += v.w;
 	return *this;
 }
-vec4 operator+(vec4 a, const vec4 &b) {
+vec4 operator+ (vec4 a, const vec4 &b) {
 	return a += b;
 }
 // Handle vec3 + vec4 and vec2 + vec4 explicitly
@@ -60,12 +60,12 @@ vec4 operator+ (const vec2 &a, const vec4 &b) {
 }
 
 // Subtraction
-vec4& vec4::operator-=(const vec4& v) {
+vec4& vec4::operator-= (const vec4& v) {
 	x -= v.x; y -= v.y;
 	z -= v.z; w -= v.w;
 	return *this;
 }
-vec4 operator-(vec4 a, const vec4 &b) {
+vec4 operator- (vec4 a, const vec4 &b) {
 	return a -= b;
 }
 // Explicitly handle mixed type vector subtraction
@@ -83,53 +83,53 @@ vec4 operator- (const vec2 &a, const vec4 &b) {
 }
 
 // Negation
-vec4 vec4::operator-(const vec4 &v) {
+vec4 vec4::operator- (const vec4 &v) {
 	return vec4(-v.x, -v.y, -v.z, -v.w);
 }
 
 // Componentwise vector multiplication
-vec4& vec4::operator*=(const vec4 &v) {
+vec4& vec4::operator*= (const vec4 &v) {
 	x *= v.x; y *= v.y;
 	z *= v.z; w *= v.w;
 	return *this;
 }
-vec4 operator*(vec4 a, const vec4 &b) {
+vec4 operator* (vec4 a, const vec4 &b) {
 	return a += b;
 }
 
 // Scalar multiplication of the vector
-vec4& vec4::operator*=(const float s) {
+vec4& vec4::operator*= (const float s) {
 	x *= s; y *= s;
 	z *= s; w *= s;
 	return *this;
 }
-vec4 operator*(vec4 v, const float s) {
+vec4 operator* (vec4 v, const float s) {
 	return v *= s;
 }
-vec4 operator*(const float s, vec4 v) {
+vec4 operator* (const float s, vec4 v) {
 	return v *= s;
 }
 
 // Componentwise vector division
-vec4& vec4::operator/=(const vec4 &v) {
+vec4& vec4::operator/= (const vec4 &v) {
 	x /= v.x; y /= v.y;
 	z /= v.z; w /= v.w;
 	return *this;
 }
-vec4 operator/(vec4 a, const vec4 &b) {
+vec4 operator/ (vec4 a, const vec4 &b) {
 	return a /= b;
 }
 
 // Scalar division of the vector
-vec4& vec4::operator/=(const float s) {
+vec4& vec4::operator/= (const float s) {
 	x /= s; y /= s;
 	z /= s; w /= s;
 	return *this;
 }
-vec4 operator/(vec4 v, const float s) {
+vec4 operator/ (vec4 v, const float s) {
 	return v /= s;
 }
-vec4 operator/(const float s, vec4 v) {
+vec4 operator/ (const float s, vec4 v) {
 	return v /= s;
 }
 
