@@ -8,6 +8,12 @@ vec3::vec3() : x(0), y(0), z(0) { }
 vec3::vec3(float v) : x(v), y(v), z(v) { }
 vec3::vec3(float x, float y, float z) : x(x), y(y), z(z) { }
 
+// Conversion Constructors
+vec3::vec3(const vec4 &v) : x(v.x), y(v.y), z(v.z) { }
+vec3::vec3(const vec2 &v) : x(v.x), y(v.y), z(0) { }
+vec3::vec3(const vec2 &v, float z) : x(v.x), y(v.y), z(z) { }
+vec3::vec3(float x, const vec2 &v) : x(x), y(v.x), z(v.y) { }
+
 // Element Indexing
 float& vec3::operator[](const int i) {
 	if (i == 0) return x;
@@ -32,6 +38,14 @@ vec3& vec3::operator+=(const vec3 &v) {
 vec3 operator+(vec3 a, const vec3 &b) {
 	return a += b;
 }
+// Explicit addition for mixed vec3/vec2 addition
+// Without this, behavior would be somewhat unpredictable (could return either a vec3 or vec2)
+vec3 operator+ (const vec3 &a, const vec2 &b) {
+	return a + vec3(b);
+}
+vec3 operator+ (const vec2 &a, const vec3 &b) {
+	return vec3(a) + b;
+}
 
 // Subtraction
 vec3& vec3::operator-=(const vec3& v) {
@@ -40,6 +54,13 @@ vec3& vec3::operator-=(const vec3& v) {
 }
 vec3 operator-(vec3 a, const vec3 &b) {
 	return a -= b;
+}
+// Explicit subtraction for vec3 - vec2 & vec2 - vec3
+vec3 operator- (const vec3 &a, const vec2 &b) {
+	return a - vec3(b);
+}
+vec3 operator- (const vec2 &a, const vec3 &b) {
+	return vec3(a) - b;
 }
 
 // Negation

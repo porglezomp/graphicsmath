@@ -7,6 +7,9 @@ struct vec2 {
 	vec2();
 	vec2(float);
 	vec2(float, float);
+// Conversion constructors
+	vec2(const vec4&);
+	vec2(const vec3&);
 // Element indexing
 	float& operator[](const int);
 // Arithmetic operators

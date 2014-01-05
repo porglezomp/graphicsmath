@@ -10,13 +10,13 @@ vec4::vec4(float x, float y, float z, float w) :
 			x(x), y(y), z(z), w(w) { }
 
 // Conversion Constructors
-vec4::vec4(vec3 &v) : x(v.x), y(v.y), z(v.z), w(0) { }
-vec4::vec4(vec3 &v, float w) : x(v.x), y(v.y), z(v.z), w(w) { }
-vec4::vec4(float x, vec3 &v) : x(x), y(v.x), z(v.y), w(v.z) { }
-vec4::vec4(vec2 &v) : x(v.x), y(v.y), z(0), w(0) { }
-vec4::vec4(vec2 &v, float z, float w) : x(v.x), y(v.y), z(z), w(w) { }
-vec4::vec4(float x, vec2 &v, float w) : x(x), y(v.x), z(v.y), w(w) { }
-vec4::vec4(float x, float y, vec2 &v) : x(x), y(y), z(v.x), w(v.y) { }
+vec4::vec4(const vec3 &v) : x(v.x), y(v.y), z(v.z), w(0) { }
+vec4::vec4(const vec3 &v, float w) : x(v.x), y(v.y), z(v.z), w(w) { }
+vec4::vec4(float x, const vec3 &v) : x(x), y(v.x), z(v.y), w(v.z) { }
+vec4::vec4(const vec2 &v) : x(v.x), y(v.y), z(0), w(0) { }
+vec4::vec4(const vec2 &v, float z, float w) : x(v.x), y(v.y), z(z), w(w) { }
+vec4::vec4(float x, const vec2 &v, float w) : x(x), y(v.x), z(v.y), w(w) { }
+vec4::vec4(float x, float y, const vec2 &v) : x(x), y(y), z(v.x), w(v.y) { }
 
 // Element Indexing
 float& vec4::operator[](const int i) {

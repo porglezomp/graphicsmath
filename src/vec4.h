@@ -8,13 +8,13 @@ struct vec4 {
 	vec4(float);
 	vec4(float, float, float, float);
 // Conversion Constructors
-	vec4(vec3&);
-	vec4(vec3&, float);
+	vec4(const vec3&);
+	vec4(const vec3&, float);
 	vec4(float, vec3&);
-	vec4(vec2&);
-	vec4(vec2&, float, float);
-	vec4(float, vec2&, float);
-	vec4(float, float, vec2&);
+	vec4(const vec2&);
+	vec4(const vec2&, float, float);
+	vec4(float, const vec2&, float);
+	vec4(float, float, const vec2&);
 // Element indexing
 	float& operator[](const int);
 // Arithmetic operators

@@ -8,6 +8,10 @@ vec2::vec2() : x(0), y(0) { }
 vec2::vec2(float v) : x(v), y(v) { }
 vec2::vec2(float x, float y) : x(x), y(y) { }
 
+// Conversion constructors
+vec2::vec2(const vec4 &v) : x(v.x), y(v.y) { }
+vec2::vec2(const vec3 &v) : x(v.x), y(v.y) { }
+
 // Element Indexing
 float& vec2::operator[](const int i) {
 	if (i == 0) return x;
