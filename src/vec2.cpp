@@ -17,8 +17,10 @@ vec2::vec2(const vec3 &v) : x(v.x), y(v.y) { }
 
 // Element indexing
 float& vec2::operator[] (const int i) {
-	if (i == 0) return x;
-	if (i == 1) return y;
+	switch i {
+		case 0: return x;
+		case 1: return y;
+	}
 	throw std::out_of_range(i + " out of range on vec4");
 }
 

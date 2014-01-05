@@ -23,10 +23,12 @@ vec4::vec4(float x, float y, const vec2 &v) : x(x), y(y), z(v.x), w(v.y) { }
 
 // Element indexing
 float& vec4::operator[] (const int i) {
-	if (i == 0) return x;
-	if (i == 1) return y;
-	if (i == 2) return z;
-	if (i == 3) return w;
+	switch i {
+		case 0: return x;
+		case 1: return y;
+		case 2: return z;
+		case 3: return w;
+	}
 	throw std::out_of_range(i + " out of range on vec4");
 }
 

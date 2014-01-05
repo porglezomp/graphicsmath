@@ -19,9 +19,11 @@ vec3::vec3(float x, const vec2 &v) : x(x), y(v.x), z(v.y) { }
 
 // Element indexing
 float& vec3::operator[] (const int i) {
-	if (i == 0) return x;
-	if (i == 1) return y;
-	if (i == 2) return z;
+	switch i {
+		case 0: return x;
+		case 1: return y;
+		case 2: return z;
+	}
 	throw std::out_of_range(i + " out of range on vec4");
 }
 
