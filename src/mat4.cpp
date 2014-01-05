@@ -107,3 +107,15 @@ mat4 mat4scale(float x, float y, float z) {
 				vec4(0, 0, z, 0),
 				vec4(0, 0, 0, 1));
 }
+
+//mat4& mat4::rotate(float, float, float, float) {
+//
+//}
+mat4& mat4::translate(float x, float y, float z) {
+	(*this) *= mat4translation(x, y, z);
+	return (*this);
+}
+mat4& mat4::scale(float x, float y, float z) {
+	(*this) *= mat4scale(x, y, z);
+	return (*this);
+}

@@ -13,6 +13,9 @@ struct mat4 {
 	mat4& operator+= (const mat4&);
 	mat4& operator-= (const mat4&);
 	mat4& operator*= (const mat4&);
+	//mat4& rotate(float, float, float, float);
+	mat4& translate(float, float, float);
+	mat4& scale(float, float, float);
 };
 
 mat4 operator+ (mat4, const mat4&);
