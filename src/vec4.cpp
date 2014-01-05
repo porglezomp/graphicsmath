@@ -1,4 +1,7 @@
 #include "vec4.h"
+
+#include "vec3.h"
+#include "vec2.h"
 #include "math.h"
 #include <stdexcept>
 #include <string>
@@ -83,7 +86,7 @@ vec4 operator- (const vec2 &a, const vec4 &b) {
 }
 
 // Negation
-vec4 vec4::operator- (const vec4 &v) {
+vec4 operator- (const vec4 &v) {
 	return vec4(-v.x, -v.y, -v.z, -v.w);
 }
 

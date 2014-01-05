@@ -1,6 +1,9 @@
 #ifndef GRAPHICSMATH_VEC_VEC3_H
 #define GRAPHICSMATH_VEC_VEC3_H
 
+struct vec4;
+struct vec2;
+
 struct vec3 {
 	float x, y, z;
 // Constructors
@@ -8,8 +11,8 @@ struct vec3 {
 	vec3(float);
 	vec3(float, float, float);
 // Conversion constructors
-	vec3(const vec4&);
-	vec3(const vec2&);
+	explicit vec3(const vec4&);
+	explicit vec3(const vec2&);
 	vec3(const vec2&, float);
 	vec3(float, const vec2&);
 //Element indexing
@@ -21,8 +24,6 @@ struct vec3 {
 	vec3& operator*= (const float);
 	vec3& operator/= (const vec3&);
 	vec3& operator/= (const float);
-// Negation
-	vec3 operator- (const vec3&);
 	float length();
 };
 
@@ -39,6 +40,9 @@ vec3 operator+ (const vec2&, const vec3&);
 vec3 operator- (vec3, const vec3&);
 vec3 operator- (const vec3&, const vec2&);
 vec3 operator- (const vec2&, const vec3&);
+
+// Negation
+vec3 operator- (const vec3&);
 
 // Componentwise vector multiplication
 vec3 operator* (vec3, const vec3&);

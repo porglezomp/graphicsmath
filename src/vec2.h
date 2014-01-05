@@ -1,6 +1,9 @@
 #ifndef GRAPHICSMATH_VEC_VEC2_H
 #define GRAPHICSMATH_VEC_VEC2_H
 
+struct vec4;
+struct vec3;
+
 struct vec2 {
 	float x, y;
 // Constructors
@@ -8,8 +11,8 @@ struct vec2 {
 	vec2(float);
 	vec2(float, float);
 // Conversion constructors
-	vec2(const vec4&);
-	vec2(const vec3&);
+	explicit vec2(const vec4&);
+	explicit vec2(const vec3&);
 // Element indexing
 	float& operator[] (const int);
 // Arithmetic operators
@@ -19,8 +22,6 @@ struct vec2 {
 	vec2& operator*= (const float);
 	vec2& operator/= (const vec2&);
 	vec2& operator/= (const float);
-// Negation
-	vec2 operator- (const vec2&);
 	float length();
 };
 
@@ -33,6 +34,9 @@ vec2 operator+ (vec2, const vec2&);
 
 // Subtraction
 vec2 operator- (vec2, const vec2&);
+
+// Negation
+vec2 operator- (const vec2&);
 
 // Componentwise vector multiplication
 vec2 operator* (vec2, const vec2&);
