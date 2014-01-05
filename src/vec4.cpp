@@ -9,6 +9,15 @@ vec4::vec4(float v) : x(v), y(v), z(v), w(v) { }
 vec4::vec4(float x, float y, float z, float w) :
 			x(x), y(y), z(z), w(w) { }
 
+// Conversion Constructors
+vec4::vec4(vec3 &v) : x(v.x), y(v.y), z(v.z), w(0) { }
+vec4::vec4(vec3 &v, float w) : x(v.x), y(v.y), z(v.z), w(w) { }
+vec4::vec4(float x, vec3 &v) : x(x), y(v.x), z(v.y), w(v.z) { }
+vec4::vec4(vec2 &v) : x(v.x), y(v.y), z(0), w(0) { }
+vec4::vec4(vec2 &v, float z, float w) : x(v.x), y(v.y), z(z), w(w) { }
+vec4::vec4(float x, vec2 &v, float w) : x(x), y(v.x), z(v.y), w(w) { }
+vec4::vec4(float x, float y, vec2 &v) : x(x), y(y), z(v.x), w(v.y) { }
+
 // Element Indexing
 float& vec4::operator[](const int i) {
 	if (i == 0) return x;
@@ -35,6 +44,20 @@ vec4& vec4::operator+=(const vec4 &v) {
 vec4 operator+(vec4 a, const vec4 &b) {
 	return a += b;
 }
+// Handle vec3 + vec4 and vec2 + vec4 explicitly
+// Otherwise they can potentially have unpredictable results
+vec4 operator+ (const vec4 &a, const vec3 &b) {
+	return a + vec4(b);
+}
+vec4 operator+ (const vec3 &a, const vec4 &b) {
+	return vec4(a) + b;
+}
+vec4 operator+ (const vec4 &a, const vec2 &b) {
+	return a + vec4(b);
+}
+vec4 operator+ (const vec2 &a, const vec4 &b) {
+	return vec4(a) + b;
+}
 
 // Subtraction
 vec4& vec4::operator-=(const vec4& v) {
@@ -44,6 +67,19 @@ vec4& vec4::operator-=(const vec4& v) {
 }
 vec4 operator-(vec4 a, const vec4 &b) {
 	return a -= b;
+}
+// Explicitly handle mixed type vector subtraction
+vec4 operator- (const vec4 &a, const vec3 &b) {
+	return a - vec4(b);
+}
+vec4 operator- (const vec3 &a, const vec4 &b) {
+	return vec4(a) - b;
+}
+vec4 operator- (const vec4 &a, const vec2 &b) {
+	return a - vec4(b);
+}
+vec4 operator- (const vec2 &a, const vec4 &b) {
+	return vec4(a) - b;
 }
 
 // Negation

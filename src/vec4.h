@@ -7,6 +7,14 @@ struct vec4 {
 	vec4();
 	vec4(float);
 	vec4(float, float, float, float);
+// Conversion Constructors
+	vec4(vec3&);
+	vec4(vec3&, float);
+	vec4(float, vec3&);
+	vec4(vec2&);
+	vec4(vec2&, float, float);
+	vec4(float, vec2&, float);
+	vec4(float, float, vec2&);
 // Element indexing
 	float& operator[](const int);
 // Arithmetic operators
@@ -27,9 +35,17 @@ bool operator!=(const vec4&, const vec4&);
 
 // Addition
 vec4 operator+(vec4, const vec4&);
+vec4 operator+ (const vec4&, const vec3&);
+vec4 operator+ (const vec3&, const vec4&);
+vec4 operator+ (const vec4&, const vec2&);
+vec4 operator+ (const vec2&, const vec4&);
 
 // Subtraction
 vec4 operator-(vec4, const vec4&);
+vec4 operator- (const vec4&, const vec3&);
+vec4 operator- (const vec3&, const vec4&);
+vec4 operator- (const vec4&, const vec2&);
+vec4 operator- (const vec2&, const vec4&);
 
 // Componentwise vector multiplication
 vec4 operator*(vec4, const vec4&);
