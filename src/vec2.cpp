@@ -17,7 +17,7 @@ vec2::vec2(const vec3 &v) : x(v.x), y(v.y) { }
 
 // Element indexing
 float& vec2::operator[] (const int i) {
-	switch i {
+	switch (i) {
 		case 0: return x;
 		case 1: return y;
 	}

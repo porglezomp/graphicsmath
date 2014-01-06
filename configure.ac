@@ -3,7 +3,7 @@
 
 AC_PREREQ([2.69])
 AC_INIT([graphicsmath], [.1], [bugs.adventurousgames@gmail.com])
-AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
 AC_CONFIG_SRCDIR([src/])
 AC_CONFIG_HEADERS([config.h])
 

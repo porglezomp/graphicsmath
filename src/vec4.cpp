@@ -23,7 +23,7 @@ vec4::vec4(float x, float y, const vec2 &v) : x(x), y(y), z(v.x), w(v.y) { }
 
 // Element indexing
 float& vec4::operator[] (const int i) {
-	switch i {
+	switch (i) {
 		case 0: return x;
 		case 1: return y;
 		case 2: return z;

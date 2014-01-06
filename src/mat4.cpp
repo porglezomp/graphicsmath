@@ -56,11 +56,12 @@ mat4 operator- (mat4 a, const mat4 &b) {
 
 // Vector-matrix multiplication (and vice-versa)
 vec4 operator* (vec4 a, const mat4 &b) {
-	a *= b.row1;
-	a *= b.row2;
-	a *= b.row3;
-	a *= b.row4;
-	return a;
+	vec4 c = 0;
+	c += a * b.row1;
+	c += a * b.row2;
+	c += a * b.row3;
+	c += a * b.row4;
+	return c;
 }
 vec4 operator* (const mat4 &a, const vec4 &b) {
 	vec4 v = 0;

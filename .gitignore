@@ -7,7 +7,6 @@
 
 # Executables
 *.exe
-Test
 
 # Core dumps
 core
@@ -19,3 +18,5 @@ core
 *.status
 *.pub
 *.deps
+*.trs
+.dirstamp

@@ -19,7 +19,7 @@ vec3::vec3(float x, const vec2 &v) : x(x), y(v.x), z(v.y) { }
 
 // Element indexing
 float& vec3::operator[] (const int i) {
-	switch i {
+	switch (i) {
 		case 0: return x;
 		case 1: return y;
 		case 2: return z;
