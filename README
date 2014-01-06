@@ -1,1 +1,2 @@
-This README is just a temporary README
+GraphicsMath is a small vector/matrix library intended to handle the basic math needed for graphics and games.
+The syntax is intended to be elegant and readable, and is designed in the style of glsl.

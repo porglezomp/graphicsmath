@@ -4,12 +4,12 @@
 #include "vec4.h"
 
 struct mat4 {
-	vec4 row1, row2, row3, row4;
+	vec4 col1, col2, col3, col4;
 	mat4();
 	mat4(vec4, vec4, vec4, vec4);
 	//mat4(float[]);
 	static mat4 identity();
-	vec4 operator[] (const int i);
+	vec4& operator[] (const int i);
 	mat4& operator+= (const mat4&);
 	mat4& operator-= (const mat4&);
 	mat4& operator*= (const mat4&);

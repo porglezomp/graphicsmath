@@ -4,9 +4,13 @@
 #include <string>
 
 // Constructors
-mat4::mat4() : row1(0), row2(0), row3(0), row4(0) { }
-mat4::mat4(vec4 a, vec4 b, vec4 c, vec4 d) :
-			row1(a), row2(b), row3(c), row4(d) { }
+mat4::mat4() : col1(0), col2(0), col3(0), col4(0) { }
+mat4::mat4(vec4 a, vec4 b, vec4 c, vec4 d) {
+	col1 = vec4(a.x, b.x, c.x, d.x);
+	col2 = vec4(a.y, b.y, c.y, d.y);
+	col3 = vec4(a.z, b.z, c.z, d.z);
+	col4 = vec4(a.w, b.w, c.w, d.w);
+}
 /*mat4::mat4(float v[]) {
 	for (int i = 0; i < 4; ++i) {
 		(*this)[i] = vec4(v[i*4], v[i*4+1], v[i*4+2], v[i*4+3]);
@@ -15,39 +19,39 @@ mat4::mat4(vec4 a, vec4 b, vec4 c, vec4 d) :
 
 // Create an identity matrix
 mat4 mat4::identity() {
-	mat4 m;
-	m.row1 = vec4(1, 0, 0, 0);
-	m.row2 = vec4(0, 1, 0, 0);
-	m.row3 = vec4(0, 0, 1, 0);
-	m.row4 = vec4(0, 0, 0, 1);
-	return m;
+	return mat4(vec4(1, 0, 0, 0),
+				vec4(0, 1, 0, 0),
+				vec4(0, 0, 1, 0),
+				vec4(0, 0, 0, 1));
 }
 
 // Column indexing
-vec4 mat4::operator[](const int i) {
-	if (i == 0) return vec4(row1.x, row2.x, row3.x, row4.x);
-	if (i == 1) return vec4(row1.y, row2.y, row3.y, row4.y);
-	if (i == 2) return vec4(row1.z, row2.z, row3.z, row4.z);
-	if (i == 3) return vec4(row1.w, row2.w, row3.w, row4.w);
-	throw std::out_of_range(i + " out of range for mat4.");
+vec4& mat4::operator[](const int i) {
+	switch (i) {
+		case 0: return col1;
+		case 1: return col2;
+		case 2: return col3;
+		case 3: return col4;
+	}
+	throw std::out_of_range(std::to_string(i) + " out of range for mat4.");
 }
 
 // Matrix addition/subtraction
 mat4& mat4::operator+= (const mat4 &b) {
-	row1 += b.row1;
-	row2 += b.row2;
-	row3 += b.row3;
-	row4 += b.row4;
+	col1 += b.col1;
+	col2 += b.col2;
+	col3 += b.col3;
+	col4 += b.col4;
 	return *this;
 }
 mat4 operator+ (mat4 a, const mat4 &b) {
 	return a += b;
 }
 mat4& mat4::operator-= (const mat4 &b) {
-	row1 -= b.row1;
-	row2 -= b.row2;
-	row3 -= b.row3;
-	row4 -= b.row4;
+	col1 -= b.col1;
+	col2 -= b.col2;
+	col3 -= b.col3;
+	col4 -= b.col4;
 	return *this;
 }
 mat4 operator- (mat4 a, const mat4 &b) {
@@ -56,33 +60,24 @@ mat4 operator- (mat4 a, const mat4 &b) {
 
 // Vector-matrix multiplication (and vice-versa)
 vec4 operator* (vec4 a, mat4 &b) {
-	vec4 c = 0;
-	c += a * b.row1;
-	c += a * b.row2;
-	c += a * b.row3;
-	c += a * b.row4;
-	return c;
+	vec4 v (dot(a, b.col1),
+			dot(a, b.col2),
+			dot(a, b.col3),
+			dot(a, b.col4));
+	return v;
 }
 vec4 operator* (mat4 &a, const vec4 &b) {
-	vec4 v (dot(b, a.row1),
-			dot(b, a.row2),
-			dot(b, a.row3),
-			dot(b, a.row4));
-	return v;
+	vec4 c = 0;
+	c += b * a.col1;
+	c += b * a.col2;
+	c += b * a.col3;
+	c += b * a.col4;
+	return c;
 }
 
 // The matrix product
 mat4& mat4::operator*= (const mat4 &m) {
-	vec4 col1, col2, col3, col4;
-	col1 = *this * vec4(m.row1.x, m.row2.x, m.row3.x, m.row4.x);
-	col2 = *this * vec4(m.row1.y, m.row2.y, m.row3.y, m.row4.y);
-	col3 = *this * vec4(m.row1.z, m.row2.z, m.row3.z, m.row4.z);
-	col4 = *this * vec4(m.row1.w, m.row2.w, m.row3.w, m.row4.w);
-	this->row1 = vec4(col1.x, col2.x, col3.x, col4.x);
-	this->row2 = vec4(col1.y, col2.y, col3.y, col4.y);
-	this->row3 = vec4(col1.z, col2.z, col3.z, col4.z);
-	this->row4 = vec4(col1.w, col2.w, col3.w, col4.w);
-	return *this;
+	// TODO: Implement
 }
 
 mat4 operator* (mat4 a, mat4 &b) {
