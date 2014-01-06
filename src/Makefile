@@ -128,7 +128,8 @@ am__v_AR_0 = @echo "  AR      " $@;
 am__v_AR_1 = 
 libgraphicsmath_0_0_a_AR = $(AR) $(ARFLAGS)
 libgraphicsmath_0_0_a_LIBADD =
-am__objects_1 = vec2.$(OBJEXT) vec3.$(OBJEXT) vec4.$(OBJEXT)
+am__objects_1 = vec2.$(OBJEXT) vec3.$(OBJEXT) vec4.$(OBJEXT) \
+	mat4.$(OBJEXT)
 am_libgraphicsmath_0_0_a_OBJECTS = $(am__objects_1)
 libgraphicsmath_0_0_a_OBJECTS = $(am_libgraphicsmath_0_0_a_OBJECTS)
 am__dirstamp = $(am__leading_dot)dirstamp
@@ -477,7 +478,7 @@ top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
 lib_LIBRARIES = libgraphicsmath-0.0.a
-libsrc = vec2.cpp vec3.cpp vec4.cpp
+libsrc = vec2.cpp vec3.cpp vec4.cpp mat4.cpp
 libgraphicsmath_0_0_a_SOURCES = $(libsrc)
 library_includedir = $(includedir)/graphicsmath0/
 library_include_HEADERS = vec2.h vec3.h vec4.h
@@ -590,6 +591,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+include ./$(DEPDIR)/mat4.Po
 include ./$(DEPDIR)/vec2.Po
 include ./$(DEPDIR)/vec3.Po
 include ./$(DEPDIR)/vec4.Po
