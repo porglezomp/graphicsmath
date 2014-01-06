@@ -76,7 +76,8 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 check_PROGRAMS = Vec2Test.exe$(EXEEXT) Vec3Test.exe$(EXEEXT) \
-	Vec4Test.exe$(EXEEXT) Mat4Test.exe$(EXEEXT)
+	Vec4Test.exe$(EXEEXT) Mat2Test.exe$(EXEEXT) \
+	Mat4Test.exe$(EXEEXT)
 subdir = tests
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/depcomp $(top_srcdir)/test-driver
@@ -89,6 +90,10 @@ CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__dirstamp = $(am__leading_dot)dirstamp
+am_Mat2Test_exe_OBJECTS = mat2test.$(OBJEXT) ../src/vec2.$(OBJEXT) \
+	../src/mat2.$(OBJEXT)
+Mat2Test_exe_OBJECTS = $(am_Mat2Test_exe_OBJECTS)
+Mat2Test_exe_LDADD = $(LDADD)
 am_Mat4Test_exe_OBJECTS = mat4test.$(OBJEXT) ../src/vec4.$(OBJEXT) \
 	../src/mat4.$(OBJEXT)
 Mat4Test_exe_OBJECTS = $(am_Mat4Test_exe_OBJECTS)
@@ -133,10 +138,12 @@ AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
 am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
-SOURCES = $(Mat4Test_exe_SOURCES) $(Vec2Test_exe_SOURCES) \
-	$(Vec3Test_exe_SOURCES) $(Vec4Test_exe_SOURCES)
-DIST_SOURCES = $(Mat4Test_exe_SOURCES) $(Vec2Test_exe_SOURCES) \
-	$(Vec3Test_exe_SOURCES) $(Vec4Test_exe_SOURCES)
+SOURCES = $(Mat2Test_exe_SOURCES) $(Mat4Test_exe_SOURCES) \
+	$(Vec2Test_exe_SOURCES) $(Vec3Test_exe_SOURCES) \
+	$(Vec4Test_exe_SOURCES)
+DIST_SOURCES = $(Mat2Test_exe_SOURCES) $(Mat4Test_exe_SOURCES) \
+	$(Vec2Test_exe_SOURCES) $(Vec3Test_exe_SOURCES) \
+	$(Vec4Test_exe_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -467,6 +474,7 @@ libsrc = $(vecsrc) $(matsrc)
 Vec2Test_exe_SOURCES = vec2test.cpp $(vecsrc)
 Vec3Test_exe_SOURCES = vec3test.cpp $(vecsrc)
 Vec4Test_exe_SOURCES = vec4test.cpp $(vecsrc)
+Mat2Test_exe_SOURCES = mat2test.cpp ../src/vec2.cpp ../src/mat2.cpp
 Mat4Test_exe_SOURCES = mat4test.cpp ../src/vec4.cpp ../src/mat4.cpp
 TESTS = $(check_PROGRAMS)
 all: all-am
@@ -512,6 +520,14 @@ clean-checkPROGRAMS:
 ../src/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) ../src/$(DEPDIR)
 	@: > ../src/$(DEPDIR)/$(am__dirstamp)
+../src/vec2.$(OBJEXT): ../src/$(am__dirstamp) \
+	../src/$(DEPDIR)/$(am__dirstamp)
+../src/mat2.$(OBJEXT): ../src/$(am__dirstamp) \
+	../src/$(DEPDIR)/$(am__dirstamp)
+
+Mat2Test.exe$(EXEEXT): $(Mat2Test_exe_OBJECTS) $(Mat2Test_exe_DEPENDENCIES) $(EXTRA_Mat2Test_exe_DEPENDENCIES) 
+	@rm -f Mat2Test.exe$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(Mat2Test_exe_OBJECTS) $(Mat2Test_exe_LDADD) $(LIBS)
 ../src/vec4.$(OBJEXT): ../src/$(am__dirstamp) \
 	../src/$(DEPDIR)/$(am__dirstamp)
 ../src/mat4.$(OBJEXT): ../src/$(am__dirstamp) \
@@ -520,8 +536,6 @@ clean-checkPROGRAMS:
 Mat4Test.exe$(EXEEXT): $(Mat4Test_exe_OBJECTS) $(Mat4Test_exe_DEPENDENCIES) $(EXTRA_Mat4Test_exe_DEPENDENCIES) 
 	@rm -f Mat4Test.exe$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(Mat4Test_exe_OBJECTS) $(Mat4Test_exe_LDADD) $(LIBS)
-../src/vec2.$(OBJEXT): ../src/$(am__dirstamp) \
-	../src/$(DEPDIR)/$(am__dirstamp)
 ../src/vec3.$(OBJEXT): ../src/$(am__dirstamp) \
 	../src/$(DEPDIR)/$(am__dirstamp)
 
@@ -544,10 +558,12 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@../src/$(DEPDIR)/mat2.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/$(DEPDIR)/mat4.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/$(DEPDIR)/vec2.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/$(DEPDIR)/vec3.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/$(DEPDIR)/vec4.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mat2test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mat4test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/vec2test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/vec3test.Po@am__quote@
@@ -779,6 +795,13 @@ Vec3Test.exe.log: Vec3Test.exe$(EXEEXT)
 Vec4Test.exe.log: Vec4Test.exe$(EXEEXT)
 	@p='Vec4Test.exe$(EXEEXT)'; \
 	b='Vec4Test.exe'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+Mat2Test.exe.log: Mat2Test.exe$(EXEEXT)
+	@p='Mat2Test.exe$(EXEEXT)'; \
+	b='Mat2Test.exe'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
