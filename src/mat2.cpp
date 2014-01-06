@@ -24,8 +24,17 @@ mat2& mat2::operator-= (const mat2 &m) {
 	col2 -= m.col2;
 	return *this;
 }
-mat2& mat2::operator*= (const mat2&) {
-	// TODO: Implement
+mat2& mat2::operator*= (const mat2& rhs) {
+	mat2 ret, transp;
+	float a, b, c, d; 
+	transp = transpose(*this)
+	a = dot(transp.col1, rhs.col1);
+	b = dot(transp.col1, rhs.col2);
+	c = dot(transp.col2, rhs.col1);
+	d = dot(transp.col2, rhs.col2);
+	ret.col1 = vec2(a, c);
+	ret.col2 = vec3(b, d);
+	return ret
 }
 //mat2& mat2::rotate(float);
 mat2& mat2::scale(float, float) { } // TODO: Implement
@@ -35,11 +44,31 @@ mat2& mat2::scale(float, float) { } // TODO: Implement
 TODO: Implement all these functions
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 */
-mat2 operator+ (mat2, const mat2&);
-mat2 operator- (mat2, const mat2&);
-vec2 operator* (vec2, mat2&);
-vec2 operator* (mat2&, const vec2&);
-vec2 operator* (mat2&, mat2&);
-mat2 transpose(const mat2&);
+
+mat2 operator+ (mat2 lhs, const mat2& rhs){
+	return lhs += rhs;
+}
+
+mat2 operator- (mat2 lhs, const mat2& rhs){
+	return lhs -= rhs;
+}
+
+vec2 operator* (vec2 lhs, mat2& rhs){
+	return lhs *= rhs;
+}
+
+vec2 operator* (mat2 lhs, const vec2& rhs){
+	return rhs *= transpose(lhs);
+}
+
+vec2 operator* (mat2& lhs, mat2& rhs){
+	return lhs *= rhs;
+}
+mat2 transpose(const mat2& toTransp){
+	mat2 ret;
+	ret.col1 = vec2(toTransp.col1.x, toTransp.col2.x);
+	ret.col2 = vec2(toTransp.col1.y, toTransp.col2.y);
+	return ret;
+}
 //mat2 mat2rotation(float);
 mat2 mat2scale(float, float);

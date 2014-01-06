@@ -69,6 +69,13 @@ vec2& vec2::operator*= (const float s) {
 	x *= s; y *= s;
 	return *this;
 }
+vec2& vec2::operator*= (const mat2 rhs) {
+	vec2 ret;
+	ret.x = dot(lhs, rhs.col1);
+	ret.y = dot(lhs, rhs.col2);
+	return ret;
+} 
+
 vec2 operator* (vec2 v, const float s) {
 	return v *= s;
 }
