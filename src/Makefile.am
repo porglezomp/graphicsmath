@@ -9,8 +9,9 @@ library_includedir = $(includedir)/graphicsmath0/
 library_include_HEADERS = vec2.h vec3.h vec4.h
 
 ## Test suite
-check_PROGRAMS = tests/Vec2Test.exe tests/Vec3Test.exe tests/Vec4Test.exe
+check_PROGRAMS = tests/Vec2Test.exe tests/Vec3Test.exe tests/Vec4Test.exe tests/Mat4Test.exe
 tests_Vec2Test_exe_SOURCES = tests/vec2test.cpp $(libsrc)
 tests_Vec3Test_exe_SOURCES = tests/vec3test.cpp $(libsrc)
 tests_Vec4Test_exe_SOURCES = tests/vec4test.cpp $(libsrc)
+tests_Mat4Test_exe_SOURCES = tests/mat4test.cpp $(libsrc)
 TESTS = $(check_PROGRAMS)

@@ -8,7 +8,7 @@ struct mat4 {
 	mat4();
 	mat4(vec4, vec4, vec4, vec4);
 	//mat4(float[]);
-	mat4 identity();
+	static mat4 identity();
 	vec4 operator[] (const int i);
 	mat4& operator+= (const mat4&);
 	mat4& operator-= (const mat4&);

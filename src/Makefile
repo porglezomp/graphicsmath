@@ -78,7 +78,8 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 check_PROGRAMS = tests/Vec2Test.exe$(EXEEXT) \
-	tests/Vec3Test.exe$(EXEEXT) tests/Vec4Test.exe$(EXEEXT)
+	tests/Vec3Test.exe$(EXEEXT) tests/Vec4Test.exe$(EXEEXT) \
+	tests/Mat4Test.exe$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/depcomp $(library_include_HEADERS) \
@@ -133,6 +134,10 @@ am__objects_1 = vec2.$(OBJEXT) vec3.$(OBJEXT) vec4.$(OBJEXT) \
 am_libgraphicsmath_0_0_a_OBJECTS = $(am__objects_1)
 libgraphicsmath_0_0_a_OBJECTS = $(am_libgraphicsmath_0_0_a_OBJECTS)
 am__dirstamp = $(am__leading_dot)dirstamp
+am_tests_Mat4Test_exe_OBJECTS = tests/mat4test.$(OBJEXT) \
+	$(am__objects_1)
+tests_Mat4Test_exe_OBJECTS = $(am_tests_Mat4Test_exe_OBJECTS)
+tests_Mat4Test_exe_LDADD = $(LDADD)
 am_tests_Vec2Test_exe_OBJECTS = tests/vec2test.$(OBJEXT) \
 	$(am__objects_1)
 tests_Vec2Test_exe_OBJECTS = $(am_tests_Vec2Test_exe_OBJECTS)
@@ -175,11 +180,11 @@ am__v_CXXLD_ = $(am__v_CXXLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
 SOURCES = $(libgraphicsmath_0_0_a_SOURCES) \
-	$(tests_Vec2Test_exe_SOURCES) $(tests_Vec3Test_exe_SOURCES) \
-	$(tests_Vec4Test_exe_SOURCES)
+	$(tests_Mat4Test_exe_SOURCES) $(tests_Vec2Test_exe_SOURCES) \
+	$(tests_Vec3Test_exe_SOURCES) $(tests_Vec4Test_exe_SOURCES)
 DIST_SOURCES = $(libgraphicsmath_0_0_a_SOURCES) \
-	$(tests_Vec2Test_exe_SOURCES) $(tests_Vec3Test_exe_SOURCES) \
-	$(tests_Vec4Test_exe_SOURCES)
+	$(tests_Mat4Test_exe_SOURCES) $(tests_Vec2Test_exe_SOURCES) \
+	$(tests_Vec3Test_exe_SOURCES) $(tests_Vec4Test_exe_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -485,6 +490,7 @@ library_include_HEADERS = vec2.h vec3.h vec4.h
 tests_Vec2Test_exe_SOURCES = tests/vec2test.cpp $(libsrc)
 tests_Vec3Test_exe_SOURCES = tests/vec3test.cpp $(libsrc)
 tests_Vec4Test_exe_SOURCES = tests/vec4test.cpp $(libsrc)
+tests_Mat4Test_exe_SOURCES = tests/mat4test.cpp $(libsrc)
 TESTS = $(check_PROGRAMS)
 all: all-am
 
@@ -565,6 +571,12 @@ tests/$(am__dirstamp):
 tests/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) tests/$(DEPDIR)
 	@: > tests/$(DEPDIR)/$(am__dirstamp)
+tests/mat4test.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/Mat4Test.exe$(EXEEXT): $(tests_Mat4Test_exe_OBJECTS) $(tests_Mat4Test_exe_DEPENDENCIES) $(EXTRA_tests_Mat4Test_exe_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/Mat4Test.exe$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(tests_Mat4Test_exe_OBJECTS) $(tests_Mat4Test_exe_LDADD) $(LIBS)
 tests/vec2test.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -595,6 +607,7 @@ include ./$(DEPDIR)/mat4.Po
 include ./$(DEPDIR)/vec2.Po
 include ./$(DEPDIR)/vec3.Po
 include ./$(DEPDIR)/vec4.Po
+include tests/$(DEPDIR)/mat4test.Po
 include tests/$(DEPDIR)/vec2test.Po
 include tests/$(DEPDIR)/vec3test.Po
 include tests/$(DEPDIR)/vec4test.Po
@@ -846,6 +859,13 @@ tests/Vec3Test.exe.log: tests/Vec3Test.exe$(EXEEXT)
 tests/Vec4Test.exe.log: tests/Vec4Test.exe$(EXEEXT)
 	@p='tests/Vec4Test.exe$(EXEEXT)'; \
 	b='tests/Vec4Test.exe'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/Mat4Test.exe.log: tests/Mat4Test.exe$(EXEEXT)
+	@p='tests/Mat4Test.exe$(EXEEXT)'; \
+	b='tests/Mat4Test.exe'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
