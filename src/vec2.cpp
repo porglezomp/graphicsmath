@@ -21,7 +21,7 @@ float& vec2::operator[] (const int i) {
 		case 0: return x;
 		case 1: return y;
 	}
-	throw std::out_of_range(i + " out of range on vec4");
+	throw std::out_of_range(std::to_string(i) + " out of range on vec4");
 }
 
 // Equality
