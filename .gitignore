@@ -1,3 +1,6 @@
+# Mac file layout
+.DS_Store
+
 # Objects
 *.o
 *.lo
