@@ -23,3 +23,4 @@ core
 *.deps
 *.trs
 .dirstamp
+aclocal.m4

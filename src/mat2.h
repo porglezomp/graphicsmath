@@ -4,7 +4,7 @@
 #include "vec2.h"
 
 struct mat2 {
-	vec2 row1, row2;
+	vec2 col1, col2;
 	mat2();
 	mat2(vec2, vec2);
 	mat2(float[]);
