@@ -99,7 +99,7 @@ vec4& vec4::operator*= (const vec4 &v) {
 	return *this;
 }
 vec4 operator* (vec4 a, const vec4 &b) {
-	return a += b;
+	return a *= b;
 }
 
 // Scalar multiplication of the vector

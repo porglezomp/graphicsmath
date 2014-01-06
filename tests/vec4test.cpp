@@ -12,5 +12,8 @@ int main() {
 	if (a + b != c) return 2;
 	c = vec4(-4);
 	if (a - b != c) return 3;
+	float s = 38;
+	printf("a dot b = %f\n", dot(a, b));
+	if (dot(a, b) != s) return 4;
 	return 0;
 }

@@ -64,11 +64,10 @@ vec4 operator* (vec4 a, mat4 &b) {
 	return c;
 }
 vec4 operator* (mat4 &a, const vec4 &b) {
-	vec4 v = 0;
-	v.x = dot(b, a.row1);
-	v.y = dot(b, a.row2);
-	v.z = dot(b, a.row3);
-	v.w = dot(b, a.row4);
+	vec4 v (dot(b, a.row1),
+			dot(b, a.row2),
+			dot(b, a.row3),
+			dot(b, a.row4));
 	return v;
 }
 
