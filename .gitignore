@@ -18,6 +18,7 @@ core
 *.log
 *.guess
 *.cache
+*.status
 *.pub
 *.deps
 *.trs
