@@ -24,3 +24,7 @@ core
 *.trs
 .dirstamp
 aclocal.m4
+configure
+config.h*
+*Makefile.in
+*Makefile
