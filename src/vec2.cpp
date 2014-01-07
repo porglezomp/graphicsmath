@@ -6,6 +6,7 @@
 #include "math.h"
 #include <stdexcept>
 #include <string>
+#include <stdio.h>
 
 // Constructors
 vec2::vec2() : x(0), y(0) { }
@@ -22,7 +23,9 @@ float& vec2::operator[] (const int i) {
 		case 0: return x;
 		case 1: return y;
 	}
-	throw std::out_of_range(std::to_string(i) + " out of range on vec4");
+	char errnum[32];
+	sprintf(errnum, "%i", i);
+	throw std::out_of_range(errnum + std::string(" out of range on vec4"));
 }
 
 // Equality
@@ -70,12 +73,6 @@ vec2& vec2::operator*= (const float s) {
 	x *= s; y *= s;
 	return *this;
 }
-vec2& vec2::operator*= (const mat2 rhs) {
-	vec2 ret;
-	ret.x = dot(lhs, rhs.col1);
-	ret.y = dot(lhs, rhs.col2);
-	return ret;
-} 
 
 vec2 operator* (vec2 v, const float s) {
 	return v *= s;

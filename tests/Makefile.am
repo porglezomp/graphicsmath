@@ -2,7 +2,7 @@
 
 AM_CPPFLAGS=-I$(top_builddir)/src
 vecsrc = ../src/vec2.cpp ../src/vec3.cpp ../src/vec4.cpp
-matsrc = ../src/mat4.cpp
+matsrc = ../src/mat4.cpp ../src/mat2.cpp
 libsrc = $(vecsrc) $(matsrc)
 ## Test suite
 check_PROGRAMS = Vec2Test.exe Vec3Test.exe Vec4Test.exe Mat2Test.exe Mat4Test.exe

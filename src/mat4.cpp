@@ -2,6 +2,7 @@
 #include "vec4.h"
 #include <stdexcept>
 #include <string>
+#include <stdio.h>
 
 // Constructors
 mat4::mat4() : col1(0), col2(0), col3(0), col4(0) { }
@@ -33,7 +34,9 @@ vec4& mat4::operator[](const int i) {
 		case 2: return col3;
 		case 3: return col4;
 	}
-	throw std::out_of_range(std::to_string(i) + " out of range for mat4.");
+	char errnum[32];
+	sprintf(errnum, "%i", i);
+	throw std::out_of_range(errnum + std::string(" out of range for mat4"));
 }
 
 // Matrix addition/subtraction
