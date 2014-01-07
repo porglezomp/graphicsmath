@@ -77,7 +77,7 @@ vec4 operator* (mat4 &a, const vec4 &b) {
 
 // The matrix product
 mat4& mat4::operator*= (const mat4 &m) {
-	// TODO: Implement
+	
 }
 
 mat4 operator* (mat4 a, mat4 &b) {

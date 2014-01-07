@@ -3,6 +3,7 @@
 
 struct vec4;
 struct vec3;
+struct mat2;
 
 struct vec2 {
 	float x, y;
@@ -22,6 +23,7 @@ struct vec2 {
 	vec2& operator*= (const float);
 	vec2& operator/= (const vec2&);
 	vec2& operator/= (const float);
+	vec2& operator*= (const mat2&);
 	float length();
 };
 

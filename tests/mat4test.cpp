@@ -7,10 +7,10 @@ void printvec(const vec4 &v) {
 }
 
 void printmat(const mat4 &m) {
-	printvec(m.row1);
+	/*printvec(m.row1);
 	printvec(m.row2);
 	printvec(m.row3);
-	printvec(m.row4);
+	printvec(m.row4);*/
 }
 
 int main() {
@@ -35,7 +35,7 @@ int main() {
 	vec4 c;
 	puts("");
 	mat4 A = I;
-	A.row1 = vec4(1, 2, 3, 4);
+	//A.row1 = vec4(1, 2, 3, 4);
 	puts("A");
 	printmat(A);
 
