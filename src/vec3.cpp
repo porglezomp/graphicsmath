@@ -5,6 +5,7 @@
 #include "math.h"
 #include <stdexcept>
 #include <string>
+#include <stdio.h>
 
 // Constructors
 vec3::vec3() : x(0), y(0), z(0) { }
@@ -24,7 +25,9 @@ float& vec3::operator[] (const int i) {
 		case 1: return y;
 		case 2: return z;
 	}
-	throw std::out_of_range(std::to_string(i) + " out of range on vec4");
+	char errnum[32];
+	sprintf(errnum, "%i", i);
+	throw std::out_of_range(errnum + std::string(" out of range on vec3"));
 }
 
 // Equality

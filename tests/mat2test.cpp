@@ -36,5 +36,10 @@ int main () {
 	puts("B * A");
 	printmat(B * A);
 	if (B * A != mat2(vec2(23, 34), vec2(31, 46))) return 4;
+	puts("A");
+	printmat(A);
+	puts("A transpose");
+	printmat(transpose(A));
+	if (transpose(A) != mat2(vec2(1, 3), vec2(2, 4))) return 5;
 	return 0;
 }

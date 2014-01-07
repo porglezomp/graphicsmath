@@ -14,9 +14,10 @@ AC_PROG_RANLIB
 AM_PROG_AR
 
 # Checks for libraries.
-AC_CHECK_LIB([m], [sqrtf])
+AC_SEARCH_LIBS([sqrtf], [m])
 
 # Checks for header files.
+AC_LANG_PUSH([C++])
 AC_CHECK_HEADERS([stdlib.h])
 AC_CHECK_HEADERS([stdio.h])
 AC_CHECK_HEADERS([string])
