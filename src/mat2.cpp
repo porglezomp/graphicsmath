@@ -90,7 +90,7 @@ float det(const mat2& toDet){
 mat2 invert(const mat2& toInvert){
 	float determinant = det(toInvert);
 	if (determinant == 0){
-		throw SingularException();
+		throw singular_matrix();
 	}
 	return (1/determinant) * toInvert;
 }
