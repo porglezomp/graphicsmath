@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([graphicsmath], [.1], [bugs.adventurousgames@gmail.com])
+AC_INIT([graphicsmath], [.5], [bugs.adventurousgames@gmail.com])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
 AC_CONFIG_SRCDIR([src/])
 AC_CONFIG_HEADERS([config.h])
