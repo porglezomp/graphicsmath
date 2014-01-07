@@ -2,6 +2,7 @@
 
 #include "vec4.h"
 #include "vec3.h"
+#include "mat2.h"
 #include "math.h"
 #include <stdexcept>
 #include <string>
@@ -81,6 +82,13 @@ vec2 operator* (vec2 v, const float s) {
 }
 vec2 operator* (const float s, vec2 v) {
 	return v *= s;
+}
+
+// Multiply the vector by a matrix
+vec2& vec2::operator*= (const mat2 &m) {
+	*this = vec2(dot(*this, m.col1),
+				dot(*this, m.col2));
+	return *this;
 }
 
 // Componentwise vector division
