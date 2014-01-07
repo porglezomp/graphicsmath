@@ -21,7 +21,13 @@ vec2& mat2::operator[] (const int i) {
 		case 0: return col1;
 		case 1: return col2;
 	}
-	std::out_of_range(std::to_string(i) + " out of range for operator[] in vec2");
+	throw std::out_of_range(std::to_string(i) + " out of range for operator[] in vec2");
+}
+bool operator== (const mat2 &a, const mat2 &b) {
+	return a.col1 == b.col1 && a.col2 == b.col2;
+}
+bool operator!= (const mat2 &a, const mat2 &b) {
+	return a.col1 != b.col1 || a.col2 != b.col2;
 }
 mat2& mat2::operator+= (const mat2 &m) {
 	col1 += m.col1;
@@ -33,18 +39,32 @@ mat2& mat2::operator-= (const mat2 &m) {
 	col2 -= m.col2;
 	return *this;
 }
-mat2& mat2::operator*= (const mat2&) {
-	// TODO: Implement
+mat2& mat2::operator*= (const mat2 &b) {
+	*this = mat2(vec2(dot(row(0), b.col(0)),
+					  dot(row(0), b.col(1))),
+				 vec2(dot(row(1), b.col(0)),
+					  dot(row(1), b.col(1))));
+	return *this;
 }
 //mat2& mat2::rotate(float);
-mat2& mat2::scale(float, float) { } // TODO: Implement
+mat2& mat2::scale(float x, float y) { 
+	*this *= mat2scale(x, y);
+	return *this;
+}
 
-vec2 mat2::row(const int i) {
+vec2 mat2::row(const int i) const {
 	switch (i) {
 		case 0: return vec2(col1.x, col2.x);
 		case 1: return vec2(col1.y, col2.y);
 	}
-	std::out_of_range(std::to_string(i) + " out of range for row in vec2");
+	throw std::out_of_range(std::to_string(i) + " out of range for row in vec2");
+}
+vec2 mat2::col(const int i) const {
+	switch (i) {
+		case 0: return col1;
+		case 1: return col2;
+	}
+	throw std::out_of_range(std::to_string(i) + " out of range for col in vec2");
 }
 
 mat2 operator+ (mat2 a, const mat2 &b) {
@@ -63,11 +83,8 @@ vec2 operator* (const mat2 &a, vec2 b) {
 	return b *= transpose(a);
 }
 
-mat2 operator* (mat2 &a, mat2 &b) {
-	return mat2(vec2(dot(a.row(0), b[0]),
-					 dot(a.row(0), b[1])),
-				vec2(dot(a.row(1), b[0]),
-					 dot(a.row(1), b[1])));
+mat2 operator* (mat2 a, mat2 &b) {
+	return a *= b;
 }
 
 mat2 transpose(const mat2 &m) {
