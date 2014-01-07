@@ -2,6 +2,10 @@
 #define GRAPHICS_MATH_EXCEPTION_H
 #include <exception>
 
-struct singular_matrix : std::exception { const char* what() const throw();};
-	
+struct singular_matrix : public std::exception {
+    const char* what() const throw(){
+        return "Singular matrix cannot be inverted";
+    }
+};
+
 #endif
