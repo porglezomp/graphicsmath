@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([graphicsmath], [0.6], [bugs.adventurous@gmail.com])
+AC_INIT([graphicsmath], [0.7], [bugs.adventurous@gmail.com])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_REQUIRE_AUX_FILE([tap-driver.sh])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])

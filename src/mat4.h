@@ -16,13 +16,17 @@ struct mat4 {
 	//mat4& rotate(float, float, float, float);
 	mat4& translate(float, float, float);
 	mat4& scale(float, float, float);
+	vec4 row(const int) const;
+	vec4 col(const int) const;
 };
 
+bool operator== (const mat4&, const mat4&);
+bool operator!= (const mat4&, const mat4&);
 mat4 operator+ (mat4, const mat4&);
 mat4 operator- (mat4, const mat4&);
-vec4 operator* (vec4, mat4&);
-vec4 operator* (mat4&, const vec4&);
-vec4 operator* (mat4&, mat4&);
+vec4 operator* (const vec4&, const mat4&);
+vec4 operator* (const mat4&, const vec4&);
+mat4 operator* (mat4, const mat4&);
 mat4 transpose(const mat4&);
 //mat4 mat4rotation(float, float, float, float);
 mat4 mat4translation(float, float, float);

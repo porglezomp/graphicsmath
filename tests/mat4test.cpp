@@ -2,61 +2,48 @@
 #include "vec4.h"
 #include <stdio.h>
 
-void printvec(const vec4 &v) {
-	printf("[%f %f %f %f]\n", v.x, v.y, v.z, v.w);
-}
-
-void printmat(const mat4 &m) {
-	/*printvec(m.row1);
-	printvec(m.row2);
-	printvec(m.row3);
-	printvec(m.row4);*/
-}
-
 int main() {
-	puts("1..4");
-// Try multiplying a vector both ways by the identity
-	//puts("I");
-	mat4 I = mat4::identity();
-	//printmat(I);
-	vec4 a = vec4(10);
-	//puts("a");
-	//printvec(a);
-
-	//puts("a * I");
-	//printvec(a * I);
+	puts("1..7");
+	mat4 A, B, C, I;
+	vec4 a, c;
+	I = mat4::identity();
+	a = vec4(10);
 	if (a * I != a) puts("not ok 1 - vec4 * mat4 (Identity matrix)");
 	else puts("ok 1 - vec4 * mat4 (Identity matrix)");
-
-	//puts("I * a");
-	//printvec(I * a);
 	if (I * a != a) puts("not ok 2 - mat4 * vec4 (Identity matrix)");
 	else puts("ok 2 - mat4 * vec4 (Identity matrix)");
-
-// Try multiplying a vector both ways by a different matrix
 	a = vec4(1, 2, 3, 4);
-	vec4 c;
-	//puts("");
-	mat4 A = I;
-	//A.row1 = vec4(1, 2, 3, 4);
-	//puts("A");
-	//printmat(A);
-
-	c = vec4(3, 7, 10, 8);
-	//puts("c");
-	//printvec(c);
-	//puts("a * A");
-	//printvec(a * A);
+	A = mat4(vec4(1, 2, 3, 4),
+			 vec4(0, 1, 0, 0),
+			 vec4(0, 0, 1, 0),
+			 vec4(0, 0, 0, 1));
+	c = vec4(1, 4, 6, 8);
 	if (a * A != c) puts("not ok 3 - vec4 * mat4");
 	else puts("ok 3 - vec4 * mat4");
-
 	c = vec4(30, 2, 3, 4);
-	//puts("c");
-	//printvec(c);
-	//puts("A * a");
-	//printvec(A * a);
 	if (A * a != c) puts("not ok 4 - mat4 * vec4");
 	else puts("ok 4 - mat4 * vec4");
-// Done
+	B = mat4(vec4(1, 5, 7, 6),
+			 vec4(2, 4, 6, 7),
+			 vec4(3, 2, 8, 1),
+			 vec4(5, 7, 3, 4));
+	C = mat4(vec4(34, 47, 55, 39),
+			 vec4(2, 4, 6, 7),
+			 vec4(3, 2, 8, 1),
+			 vec4(5, 7, 3, 4));
+	if (A * B != C) puts("not ok 5 - mat4 * mat4");
+	else puts("ok 5 - mat4 * mat4");
+	C = mat4(vec4(1, 7, 10, 10),
+			 vec4(2, 8, 12, 15),
+ 			 vec4(3, 8, 17, 13),
+			 vec4(5, 17, 18, 24));
+	if (B * A != C) puts("not ok 6 - mat4 * mat4 (other order)");
+	else puts("ok 6 - mat4 * mat4 (other order)");
+	C = mat4(vec4(1, 2, 3, 5),
+			 vec4(5, 4, 2, 7),
+			 vec4(7, 6, 8, 3),
+			 vec4(6, 7, 1, 4));
+	if (transpose(B) != C) puts("not ok 7 - transpose");
+	else puts("ok 7 - transpose");
 	return 0;
 }
