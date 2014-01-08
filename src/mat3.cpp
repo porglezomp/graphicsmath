@@ -12,9 +12,6 @@ mat3::mat3(vec3 a, vec3 b, vec3 c) {
 	col3 = vec3(a.z, b.z, c.z);
 }
 /*mat3::mat3(float v[]) {
-	for (int i = 0; i < 4; ++i) {
-		(*this)[i] = vec3(v[i*3], v[i*3+1], v[i*3+2]);
-	}
 }*/
 
 // Create an identity matrix
@@ -33,7 +30,35 @@ vec3& mat3::operator[](const int i) {
 	}
 	char errnum[32];
 	sprintf(errnum, "%i", i);
-	throw std::out_of_range(errnum + std::string(" out of range for mat3"));
+	throw std::out_of_range(errnum + std::string(" out of range for mat3[]"));
+}
+
+bool operator== (const mat3 &lhs, const mat3 &rhs) {
+	return lhs.col1 == rhs.col1 && lhs.col2 == rhs.col2 && lhs.col3 == rhs.col3;
+}
+bool operator!= (const mat3 &lhs, const mat3 &rhs) {
+	return lhs.col1 != rhs.col1 || lhs.col2 != rhs.col2 || lhs.col3 != rhs.col3;
+}
+
+vec3 mat3::col(const int i) const {
+	switch (i) {
+		case 0: return col1;
+		case 1: return col2;
+		case 2: return col3;
+	}
+	char errnum[32];
+	sprintf(errnum, "%i", i);
+	throw std::out_of_range(errnum + std::string(" out of range for mat3::col()"));
+}
+vec3 mat3::row(const int i) const {
+	switch (i) {
+		case 0: return vec3(col1.x, col2.x, col3.x);
+		case 1: return vec3(col1.y, col2.y, col3.y);
+		case 2: return vec3(col1.z, col2.z, col3.z);
+	}
+	char errnum[32];
+	sprintf(errnum, "%i", i);
+	throw std::out_of_range(errnum + std::string(" out of range for mat3::row()"));
 }
 
 // Matrix addition/subtraction
@@ -57,32 +82,34 @@ mat3 operator- (mat3 a, const mat3 &b) {
 }
 
 // Vector-matrix multiplication (and vice-versa)
-vec3 operator* (vec3 a, mat3 &b) {
-	vec3 v (dot(a, b.col1),
-			dot(a, b.col2),
-			dot(a, b.col3));
-	return v;
+vec3 operator* (const vec3 &a, const mat3 &b) {
+	return vec3(dot(a, b.col1),
+				dot(a, b.col2),
+				dot(a, b.col3));
 }
-vec3 operator* (mat3 &a, const vec3 &b) {
-	vec3 c = 0;
-	c += b * a.col1;
-	c += b * a.col2;
-	c += b * a.col3;
-	return c;
+vec3 operator* (const mat3 &a, const vec3 &b) {
+	return b * transpose(a);
 }
 
 // The matrix product
-mat3& mat3::operator*= (const mat3 &m) {
-	throw std::logic_error("NOT IMPLEMENTED HAHAHA");
+mat3& mat3::operator*= (const mat3 &rhs) {
+	mat3 lhs;
+	for (int i = 0; i < 3; ++i) {
+		lhs[i] = vec3(dot(row(0), rhs.col(i)), 
+					  dot(row(1), rhs.col(i)),
+					  dot(row(2), rhs.col(i)));
+	}
+	*this = lhs;
+	return *this;
 }
 
-mat3 operator* (mat3 a, mat3 &b) {
+mat3 operator* (mat3 a, const mat3 &b) {
 	return a *= b;
 }
 
 // Transpose
-mat3 transpose(mat3 &m) {
-	return mat3(m[0], m[1], m[2]);
+mat3 transpose(const mat3 &m) {
+	return mat3(m.col(0), m.col(1), m.col(2));
 }
 
 // Transform matrices
