@@ -1,6 +1,10 @@
 # Mac file layout
 .DS_Store
 
+# Tarballs
+*.tar
+*.tar.gz
+
 # Objects
 *.o
 *.lo
