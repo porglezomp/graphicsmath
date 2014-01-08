@@ -1,2 +1,8 @@
+printf "RUNNING: automake --add-missing...   "
+automake --add-missing
+echo "done"
+printf "RUNNING: autoreconf...   "
 autoreconf
+echo "done"
+echo "RUNNING: ./configure"
 ./configure

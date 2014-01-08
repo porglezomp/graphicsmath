@@ -14,6 +14,9 @@
 # Core dumps
 core
 
+# Vim swap files
+*.swp
+
 # Ignores for the Automake/Autoconf stuff
 *.log
 *.guess
@@ -28,3 +31,4 @@ configure
 config.h*
 *Makefile.in
 *Makefile
+build-aux/

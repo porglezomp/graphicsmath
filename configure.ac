@@ -3,6 +3,8 @@
 
 AC_PREREQ([2.69])
 AC_INIT([graphicsmath], [.5], [bugs.adventurousgames@gmail.com])
+AC_CONFIG_AUX_DIR([build-aux])
+AC_REQUIRE_AUX_FILE([tap-driver.sh])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
 AC_CONFIG_SRCDIR([src/])
 AC_CONFIG_HEADERS([config.h])
@@ -12,6 +14,7 @@ AC_PROG_CXX
 AC_PROG_CC
 AC_PROG_RANLIB
 AM_PROG_AR
+AC_PROG_AWK
 
 # Checks for libraries.
 AC_SEARCH_LIBS([sqrtf], [m])
