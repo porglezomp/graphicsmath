@@ -14,45 +14,49 @@ void printmat(const mat4 &m) {
 }
 
 int main() {
+	puts("1..4");
 // Try multiplying a vector both ways by the identity
-	puts("I");
+	//puts("I");
 	mat4 I = mat4::identity();
-	printmat(I);
+	//printmat(I);
 	vec4 a = vec4(10);
-	puts("a");
-	printvec(a);
+	//puts("a");
+	//printvec(a);
 
-	puts("a * I");
-	printvec(a * I);
-	if (a * I != a) return 1;
+	//puts("a * I");
+	//printvec(a * I);
+	if (a * I != a) puts("not ok 1 - vec4 * mat4 (Identity matrix)");
+	else puts("ok 1 - vec4 * mat4 (Identity matrix)");
 
-	puts("I * a");
-	printvec(I * a);
-	if (I * a != a) return 2;
+	//puts("I * a");
+	//printvec(I * a);
+	if (I * a != a) puts("not ok 2 - mat4 * vec4 (Identity matrix)");
+	else puts("ok 2 - mat4 * vec4 (Identity matrix)");
 
 // Try multiplying a vector both ways by a different matrix
 	a = vec4(1, 2, 3, 4);
 	vec4 c;
-	puts("");
+	//puts("");
 	mat4 A = I;
 	//A.row1 = vec4(1, 2, 3, 4);
-	puts("A");
-	printmat(A);
+	//puts("A");
+	//printmat(A);
 
 	c = vec4(3, 7, 10, 8);
-	puts("c");
-	printvec(c);
-	puts("a * A");
-	printvec(a * A);
-	if (a * A != c) return 4;
+	//puts("c");
+	//printvec(c);
+	//puts("a * A");
+	//printvec(a * A);
+	if (a * A != c) puts("not ok 3 - vec4 * mat4");
+	else puts("ok 3 - vec4 * mat4");
 
 	c = vec4(30, 2, 3, 4);
-	puts("c");
-	printvec(c);
-	puts("A * a");
-	printvec(A * a);
-	if (A * a != c) return 3;
-
+	//puts("c");
+	//printvec(c);
+	//puts("A * a");
+	//printvec(A * a);
+	if (A * a != c) puts("not ok 4 - mat4 * vec4");
+	else puts("ok 4 - mat4 * vec4");
 // Done
 	return 0;
 }
