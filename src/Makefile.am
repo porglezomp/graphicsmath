@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
-lib_LIBRARIES = libgraphicsmath-0.0.a
+lib_LIBRARIES = libgraphicsmath-0.6.a
 
-libgraphicsmath_0_0_a_SOURCES = vec2.cpp vec3.cpp vec4.cpp mat2.cpp mat4.cpp
+libgraphicsmath_0_6_a_SOURCES = vec2.cpp vec3.cpp vec4.cpp mat2.cpp mat3.cpp mat4.cpp
 library_includedir = $(includedir)/graphicsmath0/
 library_include_HEADERS = vec2.h vec3.h vec4.h
