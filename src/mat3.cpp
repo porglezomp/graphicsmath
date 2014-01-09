@@ -3,8 +3,13 @@
 #include "mat2.h"
 #include "gm_exception.h"
 #include <stdexcept>
+#include <math.h>
 #include <string>
 #include <stdio.h>
+
+#define PI	3.141592654
+#define DEG2RAD	PI/180
+#define RAD2DEG	180/PI
 
 // Constructors
 mat3::mat3() : col1(0), col2(0), col3(0) { }
@@ -161,13 +166,23 @@ mat3 mat3scale(float x, float y, float z) {
 				vec3(0, y, 0),
 				vec3(0, 0, z));
 }
+mat3 mat3rotation(float theta) {
+	float rad = theta*DEG2RAD;
+	float co = cosf(rad);
+	float si = sinf(rad);
+	return mat3(vec3(co, -si, 0),
+				vec3(si,  co, 0),
+				vec3(0,   0,  0));
+}
 
 //mat3& mat3::rotate(float, float, float, float) {
 //
 //}
-//mat3& mat3::rotate(float) {
-//
-//}
+mat3& mat3::rotate(float theta) {
+	*this *= mat3rotation(theta);
+	return *this;
+}
+
 mat3& mat3::translate(float x, float y) {
 	(*this) *= mat3translation(x, y);
 	return (*this);

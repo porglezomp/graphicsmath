@@ -1,15 +1,18 @@
 #include "mat2.h"
 #include "vec2.h"
 #include "gm_exception.h"
+#include <math.h>
 #include <stdexcept>
 #include <string>
 #include <stdio.h>
 
+#define PI	3.141592654
+#define DEG2RAD	PI/180
+#define RAD2DEG	180/PI
+
 mat2::mat2() : col1(0), col2(0) { }
-mat2::mat2(vec2 r1, vec2 r2) {
-	col1 = vec2(r1.x, r2.x);
-	col2 = vec2(r1.y, r2.y);
-}
+mat2::mat2(vec2 r1, vec2 r2) : col1(vec2(r1.x, r2.x)), col2(vec2(r1.y, r2.y)) { }
+mat2::mat2(float a, float b, float c, float d) : col1(vec2(a, c)), col2(vec2(b, d)) { }
 mat2::mat2(float data[]) {
 	col1 = vec2(data[0], data[2]);
 	col2 = vec2(data[1], data[3]);
@@ -55,7 +58,10 @@ mat2& mat2::operator*= (const float rhs){
 	*this = mat2(col1 * rhs, col2 * rhs);
 	return *this;
 }
-//mat2& mat2::rotate(float);
+mat2& mat2::rotate(float theta) {
+	*this *= mat2rotation(theta);
+	return *this;
+}
 mat2& mat2::scale(float x, float y) { 
 	*this *= mat2scale(x, y);
 	return *this;
@@ -124,11 +130,15 @@ mat2 operator* (const float a, mat2 b){
 
 mat2 transpose(const mat2 &m) {
 	return mat2(m.col1, m.col2);
-
 }
 
-
-//mat2 mat2rotation(float);
+mat2 mat2rotation(float theta)  {
+	float rads = theta*DEG2RAD;
+	float co = cosf(rads);
+	float si = sinf(rads);
+	return mat2(vec2(co, -si),
+				vec2(si,  co));
+}
 
 mat2 mat2scale(float x, float y) {
 	return mat2(vec2(x, 0),

@@ -15,6 +15,7 @@ struct mat3 {
 	mat3& operator*= (const mat3&);
 	mat3& operator*= (const int);
 	//mat3& rotate(float, float, float, float);
+	mat3& rotate(float);
 	mat3& translate(float, float);
 	mat3& scale(float, float, float);
 	vec3 getRow(const int) const;
@@ -34,7 +35,7 @@ mat3 operator* (mat3, const int);
 mat3 operator* (const int, mat3);
 mat3 transpose(const mat3&);
 //mat3 mat3rotation(float, float, float, float);
-//mat3 mat3rotation(float);
+mat3 mat3rotation(float);
 mat3 mat3translation(float, float);
 mat3 mat3scale(float, float, float);
 float det(const mat3&);
