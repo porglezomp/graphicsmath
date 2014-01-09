@@ -18,6 +18,8 @@ AC_PROG_AWK
 
 # Checks for libraries.
 AC_SEARCH_LIBS([sqrtf], [m])
+AC_SEARCH_LIBS([sinf], [m])
+AC_SEARCH_LIBS([cosf], [m])
 
 # Checks for header files.
 AC_LANG_PUSH([C++])
