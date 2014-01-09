@@ -13,11 +13,14 @@ struct mat3 {
 	mat3& operator+= (const mat3&);
 	mat3& operator-= (const mat3&);
 	mat3& operator*= (const mat3&);
+	mat3& operator*= (const int);
 	//mat3& rotate(float, float, float, float);
 	mat3& translate(float, float);
 	mat3& scale(float, float, float);
-	vec3 row(const int) const;
-	vec3 col(const int) const;
+	vec3 getRow(const int) const;
+	vec3 getCol(const int) const;
+	vec3 setRow(const int, const vec3&);
+	vec3 setCol(const int, const vec3&);
 };
 
 bool operator== (const mat3&, const mat3&);
@@ -27,10 +30,15 @@ mat3 operator- (mat3, const mat3&);
 vec3 operator* (const vec3&, const mat3&);
 vec3 operator* (const mat3&, const vec3&);
 mat3 operator* (mat3, const mat3&);
+mat3 operator* (mat3, const int);
+mat3 operator* (const int, mat3);
 mat3 transpose(const mat3&);
 //mat3 mat3rotation(float, float, float, float);
 //mat3 mat3rotation(float);
 mat3 mat3translation(float, float);
 mat3 mat3scale(float, float, float);
+float det(const mat3&);
+mat3 invert(mat3&);
+
 
 #endif

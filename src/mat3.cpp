@@ -1,5 +1,7 @@
 #include "mat3.h"
 #include "vec3.h"
+#include "mat2.h"
+#include "gm_exception.h"
 #include <stdexcept>
 #include <string>
 #include <stdio.h>
@@ -40,7 +42,7 @@ bool operator!= (const mat3 &lhs, const mat3 &rhs) {
 	return lhs.col1 != rhs.col1 || lhs.col2 != rhs.col2 || lhs.col3 != rhs.col3;
 }
 
-vec3 mat3::col(const int i) const {
+vec3 mat3::getCol(const int i) const {
 	switch (i) {
 		case 0: return col1;
 		case 1: return col2;
@@ -50,7 +52,7 @@ vec3 mat3::col(const int i) const {
 	sprintf(errnum, "%i", i);
 	throw std::out_of_range(errnum + std::string(" out of range for mat3::col()"));
 }
-vec3 mat3::row(const int i) const {
+vec3 mat3::getRow(const int i) const {
 	switch (i) {
 		case 0: return vec3(col1.x, col2.x, col3.x);
 		case 1: return vec3(col1.y, col2.y, col3.y);
@@ -59,6 +61,27 @@ vec3 mat3::row(const int i) const {
 	char errnum[32];
 	sprintf(errnum, "%i", i);
 	throw std::out_of_range(errnum + std::string(" out of range for mat3::row()"));
+}
+
+void mat3::setRow(const int i, const vec3& inRow){
+
+	col1[i] = inRow.x
+	col2[i] = inRow.y;
+	col3[i] = inRow.z;	
+}
+
+void mat3::setColumn(const int i, const vec3& inCol){
+	switch(i){
+		case 0: 
+			col1 = inCol;
+			break;
+		case 1:
+			col2 = inCol;
+			break;
+		case 2:
+			col3 = inCol;
+			break;
+	}
 }
 
 // Matrix addition/subtraction
@@ -107,6 +130,21 @@ mat3 operator* (mat3 a, const mat3 &b) {
 	return a *= b;
 }
 
+mat3& mat3::operator*= (const float rhs){
+	col1 *= rhs;
+	col2 *= rhs;
+	col3 *= rhs;
+	return *this;
+}
+
+mat3 operator* (mat3& lhs, const float rhs){
+	return lhs *= rhs;
+}
+
+mat3 operator* (const float lhs, mat3& rhs){
+	return rhs *= lhs;
+}
+
 // Transpose
 mat3 transpose(const mat3 &m) {
 	return mat3(m.col(0), m.col(1), m.col(2));
@@ -138,3 +176,67 @@ mat3& mat3::scale(float x, float y, float z) {
 	(*this) *= mat3scale(x, y, z);
 	return (*this);
 }
+//calculate determinant of 3x3 matrix
+float det(const mat3& toDet){
+	float ret = 0;
+	ret += col1.x * det(mat2(vec2(toDet.col2.y, toDet.col2.z), 
+							vec2(toDet.col3.y, toDet.col3.z)));
+	
+	ret -= col2.x * det(mat2(vec2(toDet.col1.y, toDet.col1.z), 
+							vec2(toDet.col3.y, toDet.col3.z)));
+	
+	ret += col3.x * det(mat2(vec2(toDet.col1.y, toDet.col1.z),
+							vec2(toDet.col2.y, toDet.col2.z)));
+	return ret;
+}
+//TODO Either finish or rewrite this awful mess of a thing.
+//invert 3x3 matrix
+/*mat3 invert(mat3& toInv){
+	//check if matrix is singular
+	vec3 zero = vec3(0);
+	float numZero1, numZero2, numZero3;
+	for (int i = 0; i < 3; i++){
+		if (toInv[i][0] == 0){
+			numZero1++;
+		}
+		if (toInv[i][1] == 0) {
+			numZero2++;
+		}
+		if (toInv[i][3] == 0) {
+			numZero3++;
+		}
+	}
+	if (toInv.getRow(0) == zero &&
+		toInv.getRow(1) == zero && 
+		toInv.getRow(2) == zero &&
+		numZero1 < 1 &&
+		numZero2 < 1 &&
+		numZero3 < 1)
+		{
+		throw singular_matrix();
+	}
+	mat3 inverse = mat3.identity();
+	//manually check for row swaps.
+	if (toInv[0][0] == 0) {
+		vec3 swap0 = toInv.getRow(0);
+		vec3 swap1 = toInv.getRow(1);
+		toInv.setRow(0, swap1);
+		toInv.setRow(1, swap0);
+		if (toInv[0][0] == 0) {
+			swap0 = toInv.getRow(0);
+			swap1 = toInv.getRow(2);
+			toInv.setRow(0, swap1);
+			toInv.setRow(2, swap0);
+		}
+	}
+	if (toInv[1][1] == 0) {
+		vec3 swap0 = toInv.getRow(1);
+		vec3 swap1 = toInv.getRow(2);
+		toInv.setRow(1, swap1);
+		toInv.setRow(2, swap0);
+	}
+	if (toInv[0][1] != 0) {
+		
+	}
+	
+}*/
