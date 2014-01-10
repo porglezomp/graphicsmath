@@ -65,4 +65,7 @@ vec3 normalize(const vec3&);
 //Dot product
 float dot(const vec3&, const vec3&);
 
+/// Cross product
+vec3 cross(const vec3&, const vec3&);
+
 #endif

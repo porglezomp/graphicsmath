@@ -134,3 +134,10 @@ vec3 normalize(const vec3 &v) {
 float dot(const vec3 &a, const vec3 &b) {
 	return a.x*b.x + a.y*b.y + a.z*b.z;
 }
+
+// Cross product
+vec3 cross(const vec3 &lhs, const vec3& rhs) {
+	return vec3(lhs.y*rhs.z - lhs.z*rhs.y,
+				lhs.z*rhs.x - lhs.x*rhs.z,
+				lhs.x*rhs.y - lhs.y*rhs.x);
+}

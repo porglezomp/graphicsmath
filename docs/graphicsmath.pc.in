@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: The Graphicsmath Library
+Description: A vector/matrix math library intended for computer graphics.
+Version: @PACKAGE_VERSION@
+Libs: -L${libdir} -l@libfilename@ -lm
+Cflags: -I${includedir}/@libfilename@
