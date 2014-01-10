@@ -56,10 +56,11 @@ vec3 operator/ (vec3, const vec3&);
 
 // Scalar division of the vector
 vec3 operator/ (vec3, const float);
-vec3 operator/ (const float, vec3);
 
 // Length of the vector
 float length(const vec3&);
+
+vec3 normalize(const vec3&);
 
 //Dot product
 float dot(const vec3&, const vec3&);

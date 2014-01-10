@@ -111,33 +111,38 @@ bool operator== (const vec2&, const vec2&);
  */
 bool operator!= (const vec2&, const vec2&);
 
-// Addition
+/// Addition
 vec2 operator+ (vec2, const vec2&);
 
-// Subtraction
+/// Subtraction
 vec2 operator- (vec2, const vec2&);
 
-// Negation
+/// Negation
 vec2 operator- (const vec2&);
 
-// Componentwise vector multiplication
+/// Componentwise vector multiplication
 vec2 operator* (vec2, const vec2&);
 
-// Scalar multiplication of the vector
+/// Scalar multiplication of the vector
 vec2 operator* (vec2, const float);
 vec2 operator* (const float, vec2);
 
-// Componentwise vector division
+/// Componentwise vector division
 vec2 operator/ (vec2, const vec2&);
 
-// Scalar division of the vector
+/// Scalar division of the vector
 vec2 operator/ (vec2, const float);
-vec2 operator/ (const float, vec2);
 
-// Length of the vector
+/// Length of the vector
 float length(const vec2&);
 
-//Dot product
+/// Return a unit vector of the input
+vec2 normalize(const vec2&);
+
+/// The angle that the vector points
+float angle(const vec2&);
+
+/// Compute the dot product of two vectors
 float dot(const vec2&, const vec2&);
 
 #endif

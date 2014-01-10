@@ -1,14 +1,15 @@
 #include "vec2.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 int main() {
-	puts("1..11"); //Show the test plan
-	
+	puts("1..14"); //Show the test plan
+
 	if (vec2(0) != vec2(0)) puts("Bail out! 1 - != inequality doesn't function");
 	else puts("ok 1 - basic inequality works");
 	if (vec2(0) == vec2(1)) puts("Bail out! 2 - == equality doesn't function");
-	else puts("ok 2 - basic equality works");	
+	else puts("ok 2 - basic equality works");
 	if (vec2(5, 2) != vec2(5, 2)) puts("not ok 3 - two component inequality is broken");
 	else puts("ok 3 - two component inequality works");
 	if (vec2(3, 7) == vec2(1, 6)) puts("not ok 4 - two component equality is broken");
@@ -23,7 +24,7 @@ int main() {
 	a = vec2(12, 14);
 	if (a.x != 12 || a.y != 14) puts("not ok 8 - vec2(x, y) constructor failed");
 	else puts("ok 8 - vec2(x, y) constructor");
-	
+
 	a = 0; b = 1; c = 1;
 	if (a + b != c) puts("not ok 9 - simple vector addition failed");
 	else puts("ok 9 - simple vector addition");
@@ -35,6 +36,13 @@ int main() {
 	c = vec2(-4);
 	if (a - b != c) puts("not ok 11 - vector subtraction failed");
 	else puts("ok 11 - vector subtraction");
+	a = vec2(2, 0);
+	if (normalize(a) != vec2(1, 0)) puts("not ok 12 - basic normalize() failed");
+	else puts("ok 12 - basic normalize");
+	if (normalize(vec2(1)) != vec2(1/sqrtf(2))) puts("not ok 13 - normalize() failed");
+	else puts("ok 13 - normalize");
+	if (angle(vec2(1)) != 45) puts("not ok 14 - angle() failed");
+	else puts("ok 14 - angle()");
 	return 0;
 }
 

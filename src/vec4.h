@@ -63,10 +63,11 @@ vec4 operator/ (vec4, const vec4&);
 
 // Scalar division of the vector
 vec4 operator/ (vec4, const float);
-vec4 operator/ (const float, vec4);
 
 // Length of the vector
 float length(const vec4&);
+
+vec4 normalize(const vec4&);
 
 //Dot product
 float dot(const vec4&, const vec4&);

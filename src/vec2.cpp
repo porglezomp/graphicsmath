@@ -8,6 +8,10 @@
 #include <string>
 #include <stdio.h>
 
+#define PI	3.141592654
+#define RAD2DEG	180/PI
+#define DEG2RAD	PI/180
+
 // Constructors
 vec2::vec2() : x(0), y(0) { }
 vec2::vec2(float v) : x(v), y(v) { }
@@ -105,9 +109,6 @@ vec2& vec2::operator/= (const float s) {
 vec2 operator/ (vec2 v, const float s) {
 	return v /= s;
 }
-vec2 operator/ (const float s, vec2 v) {
-	return v /= s;
-}
 
 // Length of the vector
 float vec2::length() {
@@ -115,6 +116,14 @@ float vec2::length() {
 }
 float length(const vec2 &v) {
 	return sqrtf(v.x*v.x + v.y*v.y);
+}
+
+vec2 normalize(const vec2 &v) {
+	return v/length(v);
+}
+
+float angle(const vec2 &v) {
+	return atan2f(v.y, v.x)*RAD2DEG;
 }
 
 // Dot product

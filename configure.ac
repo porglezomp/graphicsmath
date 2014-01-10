@@ -24,6 +24,7 @@ fi
 AC_SEARCH_LIBS([sqrtf], [m])
 AC_SEARCH_LIBS([sinf], [m])
 AC_SEARCH_LIBS([cosf], [m])
+AC_SEARCH_LIBS([atan2f], [m])
 
 # Checks for header files.
 AC_LANG_PUSH([C++])

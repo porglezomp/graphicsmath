@@ -126,6 +126,10 @@ float length(const vec3 &v) {
 	return sqrtf(v.x*v.x + v.y*v.y + v.z*v.z);
 }
 
+vec3 normalize(const vec3 &v) {
+	return v/length(v);
+}
+
 // Dot product
 float dot(const vec3 &a, const vec3 &b) {
 	return a.x*b.x + a.y*b.y + a.z*b.z;
