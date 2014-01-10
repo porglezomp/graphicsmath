@@ -36,3 +36,7 @@ config.h*
 *Makefile.in
 *Makefile
 build-aux/
+stamp-h1
+
+# Doxygen files
+docs/
