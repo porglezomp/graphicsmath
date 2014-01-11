@@ -95,6 +95,12 @@ vec3 operator* (const vec3 &a, const mat3 &b) {
 vec3 operator* (const mat3 &a, const vec3 &b) {
 	return b * transpose(a);
 }
+vec2 operator* (const vec2 &lhs, const mat3 &rhs) {
+	return vec2(vec3(lhs, 1) * rhs);
+}
+vec2 operator* (const mat3 &lhs, const vec2 &rhs) {
+	return vec2(lhs * vec3(rhs, 1));
+}
 
 // The matrix product
 mat3& mat3::operator*= (const mat3 &rhs) {

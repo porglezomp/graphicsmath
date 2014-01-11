@@ -2,6 +2,7 @@
 #define GRPAHICSMATH_MAT_mat3_H
 
 #include "vec3.h"
+#include "vec2.h"
 
 struct mat3 {
 	vec3 col1, col2, col3;
@@ -27,6 +28,8 @@ mat3 operator+ (mat3, const mat3&);
 mat3 operator- (mat3, const mat3&);
 vec3 operator* (const vec3&, const mat3&);
 vec3 operator* (const mat3&, const vec3&);
+vec2 operator* (const vec2&, const mat3&);
+vec2 operator* (const mat3&, const vec2&);
 mat3 operator* (mat3, const mat3&);
 mat3 transpose(const mat3&);
 //mat3 mat3rotation(float, float, float, float);
