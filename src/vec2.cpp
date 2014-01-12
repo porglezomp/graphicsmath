@@ -69,7 +69,7 @@ vec2& vec2::operator*= (const vec2 &v) {
 	return *this;
 }
 vec2 operator* (vec2 a, const vec2 &b) {
-	return a += b;
+	return a *= b;
 }
 
 // Scalar multiplication of the vector

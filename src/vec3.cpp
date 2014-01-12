@@ -82,7 +82,7 @@ vec3& vec3::operator*= (const vec3 &v) {
 	return *this;
 }
 vec3 operator* (vec3 a, const vec3 &b) {
-	return a += b;
+	return a *= b;
 }
 
 // Scalar multiplication of the vector
