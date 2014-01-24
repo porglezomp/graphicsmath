@@ -50,6 +50,6 @@ AC_CONFIG_FILES([Makefile
                  src/Makefile
                  tests/Makefile
                  docs/Makefile
-				 docs/${libfilename}.pc:docs/graphicsmath.pc.in])
+		 docs/${libfilename}.pc:docs/graphicsmath.pc.in])
 
 AC_OUTPUT
