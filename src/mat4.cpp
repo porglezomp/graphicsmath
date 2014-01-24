@@ -130,28 +130,34 @@ mat4 transpose(const mat4 &m) {
 	return mat4(m.col1, m.col2, m.col3, m.col4);
 }
 
+// TODO: Implement rotation matrix generation (angle-axis)
+//mat4 mat4::rotationmatrix(float angle, float x, float y, float z) {
+//	
+//}
+
 // Transform matrices
-mat4 mat4translation(float x, float y, float z) {
+mat4 mat4::translationmatrix(float x, float y, float z) {
 	return mat4(vec4(0, 0, 0, x),
 				vec4(0, 0, 0, y),
 				vec4(0, 0, 0, z),
 				vec4(0, 0, 0, 1));
 }
-mat4 mat4scale(float x, float y, float z) {
+mat4 mat4::scalematrix(float x, float y, float z) {
 	return mat4(vec4(x, 0, 0, 0),
 				vec4(0, y, 0, 0),
 				vec4(0, 0, z, 0),
 				vec4(0, 0, 0, 1));
 }
 
+// TODO: Implement mat4 rotation
 //mat4& mat4::rotate(float, float, float, float) {
 //
 //}
 mat4& mat4::translate(float x, float y, float z) {
-	(*this) *= mat4translation(x, y, z);
+	(*this) *= mat4::translationmatrix(x, y, z);
 	return (*this);
 }
 mat4& mat4::scale(float x, float y, float z) {
-	(*this) *= mat4scale(x, y, z);
+	(*this) *= mat4::scalematrix(x, y, z);
 	return (*this);
 }

@@ -124,17 +124,17 @@ mat3 transpose(const mat3 &m) {
 }
 
 // Transform matrices
-mat3 mat3translation(float x, float y) {
+mat3 mat3::translationmatrix(float x, float y) {
 	return mat3(vec3(0, 0, x),
 				vec3(0, 0, y),
 				vec3(0, 0, 0));
 }
-mat3 mat3scale(float x, float y, float z) {
+mat3 mat3::scalematrix(float x, float y, float z) {
 	return mat3(vec3(x, 0, 0),
 				vec3(0, y, 0),
 				vec3(0, 0, z));
 }
-mat3 mat3rotation(float theta) {
+mat3 mat3::rotationmatrix(float theta) {
 	float rad = theta*DEG2RAD;
 	float co = cosf(rad);
 	float si = sinf(rad);
@@ -147,15 +147,15 @@ mat3 mat3rotation(float theta) {
 //
 //}
 mat3& mat3::rotate(float theta) {
-	*this *= mat3rotation(theta);
+	*this *= mat3::rotationmatrix(theta);
 	return *this;
 }
 
 mat3& mat3::translate(float x, float y) {
-	(*this) *= mat3translation(x, y);
+	(*this) *= mat3::translationmatrix(x, y);
 	return (*this);
 }
 mat3& mat3::scale(float x, float y, float z) {
-	(*this) *= mat3scale(x, y, z);
+	(*this) *= mat3::scalematrix(x, y, z);
 	return (*this);
 }
