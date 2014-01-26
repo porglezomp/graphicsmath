@@ -1,5 +1,5 @@
-#ifndef GRAPHICSMATH_MAT_mat3_H
-#define GRPAHICSMATH_MAT_mat3_H
+#ifndef GRAPHICSMATH_MAT_MAT3_H
+#define GRPAHICSMATH_MAT_MAT3_H
 
 #include "vec3.h"
 #include "vec2.h"

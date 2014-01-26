@@ -1,11 +1,11 @@
+#ifndef GRAPHICSMATH_VEC_VEC2_H
+#define GRAPHICSMATH_VEC_VEC2_H
+
 /**
  * @file
  * @section DESCRIPTION
  * A 2 dimensional vector class.
  */
-
-#ifndef GRAPHICSMATH_VEC_VEC2_H
-#define GRAPHICSMATH_VEC_VEC2_H
 
 // Forward-declare the needed types
 struct vec4;
