@@ -56,7 +56,7 @@ int main() {
 	if (vec3(mat4::rotationmatrix(45, vec3(1, 1, 0)) * a) != vec3(.5, -.5, sqrtf(.5))) puts("not ok 10 - arbitrary rotation");
 	else puts("ok 10 - arbitrary rotation");
 	A = mat4::identity();
-	if (invert(A) != A) puts("not ok 8 - invert identity");
-	else puts("ok 8 - invert identity");
+	if (invert(A) != A) puts("not ok 11 - invert identity");
+	else puts("ok 11 - invert identity");
 	return 0;
 }

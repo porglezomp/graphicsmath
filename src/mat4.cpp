@@ -181,9 +181,9 @@ mat4 transpose(const mat4 &m) {
 
 mat4 mat4::rotationmatrix(float theta, const vec3 &axis) {
 	mat3 m3 = mat3::rotationmatrix(theta, axis);
-	return mat4(vec4(m3.row(0), 0),
-				vec4(m3.row(1), 0), 
-				vec4(m3.row(2), 0), 
+	return mat4(vec4(m3.getRow(0), 0),
+				vec4(m3.getRow(1), 0), 
+				vec4(m3.getRow(2), 0), 
 				vec4(0, 0, 0, 1));
 }
 
