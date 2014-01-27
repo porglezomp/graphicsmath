@@ -69,13 +69,12 @@ vec3 mat3::getRow(const int i) const {
 }
 
 void mat3::setRow(const int i, const vec3& inRow){
-
-	col1[i] = inRow.x
+	col1[i] = inRow.x;
 	col2[i] = inRow.y;
 	col3[i] = inRow.z;	
 }
 
-void mat3::setColumn(const int i, const vec3& inCol){
+void mat3::setCol(const int i, const vec3& inCol){
 	switch(i){
 		case 0: 
 			col1 = inCol;
@@ -123,9 +122,9 @@ vec3 operator* (const mat3 &a, const vec3 &b) {
 mat3& mat3::operator*= (const mat3 &rhs) {
 	mat3 lhs;
 	for (int i = 0; i < 3; ++i) {
-		lhs[i] = vec3(dot(row(0), rhs.col(i)), 
-					  dot(row(1), rhs.col(i)),
-					  dot(row(2), rhs.col(i)));
+		lhs[i] = vec3(dot(getRow(0), rhs.getCol(i)), 
+					  dot(getRow(1), rhs.getCol(i)),
+					  dot(getRow(2), rhs.getCol(i)));
 	}
 	*this = lhs;
 	return *this;
@@ -152,7 +151,7 @@ mat3 operator* (const float lhs, mat3& rhs){
 
 // Transpose
 mat3 transpose(const mat3 &m) {
-	return mat3(m.col(0), m.col(1), m.col(2));
+	return mat3(m.getCol(0), m.getCol(1), m.getCol(2));
 }
 
 // Transform matrices
@@ -192,16 +191,16 @@ mat3& mat3::scale(float x, float y, float z) {
 	return (*this);
 }
 //calculate determinant of 3x3 matrix
-float det(const mat3& toDet){
+float det(const mat3 &m){
 	float ret = 0;
-	ret += col1.x * det(mat2(vec2(toDet.col2.y, toDet.col2.z), 
-							vec2(toDet.col3.y, toDet.col3.z)));
+	ret += m.col1.x * det(mat2(vec2(m.col2.y, m.col2.z), 
+							vec2(m.col3.y, m.col3.z)));
 	
-	ret -= col2.x * det(mat2(vec2(toDet.col1.y, toDet.col1.z), 
-							vec2(toDet.col3.y, toDet.col3.z)));
+	ret -= m.col2.x * det(mat2(vec2(m.col1.y, m.col1.z), 
+							vec2(m.col3.y, m.col3.z)));
 	
-	ret += col3.x * det(mat2(vec2(toDet.col1.y, toDet.col1.z),
-							vec2(toDet.col2.y, toDet.col2.z)));
+	ret += m.col3.x * det(mat2(vec2(m.col1.y, m.col1.z),
+							vec2(m.col2.y, m.col2.z)));
 	return ret;
 }
 //TODO Either finish or rewrite this awful mess of a thing.

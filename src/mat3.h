@@ -13,15 +13,15 @@ struct mat3 {
 	mat3& operator+= (const mat3&);
 	mat3& operator-= (const mat3&);
 	mat3& operator*= (const mat3&);
-	mat3& operator*= (const int);
+	mat3& operator*= (const float);
 	//mat3& rotate(float, float, float, float);
 	mat3& rotate(float);
 	mat3& translate(float, float);
 	mat3& scale(float, float, float);
 	vec3 getRow(const int) const;
 	vec3 getCol(const int) const;
-	vec3 setRow(const int, const vec3&);
-	vec3 setCol(const int, const vec3&);
+	void setRow(const int, const vec3&);
+	void setCol(const int, const vec3&);
 };
 
 bool operator== (const mat3&, const mat3&);
