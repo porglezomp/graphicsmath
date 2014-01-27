@@ -194,14 +194,14 @@ mat3& mat3::scale(float x, float y, float z) {
 //calculate determinant of 3x3 matrix
 float det(const mat3 &m){
 	float ret = 0;
-	ret += toDet.col1.x * det(mat2(vec2(toDet.col2.y, toDet.col2.z), 
-							vec2(toDet.col3.y, toDet.col3.z)));
+	ret += m.col1.x * det(mat2(vec2(m.col2.y, m.col2.z), 
+							vec2(m.col3.y, m.col3.z)));
 	
-	ret -= toDet.col2.x * det(mat2(vec2(toDet.col1.y, toDet.col1.z), 
-							vec2(toDet.col3.y, toDet.col3.z)));
+	ret -= m.col2.x * det(mat2(vec2(m.col1.y, m.col1.z), 
+							vec2(m.col3.y, m.col3.z)));
 	
-	ret += toDet.col3.x * det(mat2(vec2(toDet.col1.y, toDet.col1.z),
-							vec2(toDet.col2.y, toDet.col2.z)));
+	ret += m.col3.x * det(mat2(vec2(m.col1.y, m.col1.z),
+							vec2(m.col2.y, m.col2.z)));
 	return ret;
 }
 

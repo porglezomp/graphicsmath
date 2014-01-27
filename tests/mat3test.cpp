@@ -4,7 +4,7 @@
 
 
 int main () {
-	puts("1..6");
+	puts("1..7");
 	mat3 A, B, C, I;
 	vec3 a = vec3(1, 2, 3);
 	I = mat3::identity();
@@ -34,5 +34,8 @@ int main () {
 							 vec3(2, 5, 8),
 							 vec3(3, 6, 9))) puts("not ok 6 - transpose");		  
 	else puts("ok 6 - transpose");
+	A = mat3::identity();
+	if (invert(A) != A) puts("not ok 7 - invert identity");
+	puts("ok 7 - invert identity");
 	return 0;
 }

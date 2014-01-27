@@ -12,7 +12,7 @@ void printmat(const mat2 &m) {
 }
 
 int main () {
-	puts("1..5");
+	puts("1..6");
 	mat2 I = mat2::identity();
 	//puts("I");
 	//printmat(I);
@@ -47,5 +47,8 @@ int main () {
 	printmat(transpose(A));*/
 	if (transpose(A) != mat2(vec2(1, 3), vec2(2, 4))) puts("not ok 5 - transpose");
 	else puts("ok 5 - transpose");
+	A = mat2::identity();
+	if (invert(A) != A) puts("not ok 6 - basic inversion");
+	else puts("ok 6 - basic inversion");
 	return 0;
 }

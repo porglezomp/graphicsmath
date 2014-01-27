@@ -200,6 +200,7 @@ mat4& mat4::scale(float x, float y, float z) {
 	return (*this);
 }
 
+// TODO: Invert function broken, will crash.
 mat4 invert(const mat4& toInv){
 	vec4 cols[4];
 	vec4 row1 = toInv.getRow(0);
@@ -213,6 +214,7 @@ mat4 invert(const mat4& toInv){
 		//find which column must be ommitted
 		for (int j = 0; j < 3; j++){
 			if (j!=i){
+				// FIXME: Sometimes the index doesn't get initialized, causes an exception
 				inds[ct] = j;
 				ct += 1;
 			}
@@ -223,17 +225,17 @@ mat4 invert(const mat4& toInv){
 
 		//all cols will have identical ommitted rows for minors.
 		cols[i] = vec4(pow(-1, i+1) * det(mat3(vec3(row2[inds[0]], row2[inds[1]], row2[inds[2]]),
-							 vec3(row3[inds[0]], row3[inds[1]], row3[inds[2]]),
-							 vec3(row4[inds[0]], row4[inds[1]], row4[inds[2]]))),
-					pow(-1, i) * det(mat3(vec3(row1[inds[0]], row1[inds[1]], row1[inds[2]]),
-							 vec3(row3[inds[0]], row3[inds[1]], row3[inds[2]]),
-							 vec3(row4[inds[0]], row4[inds[1]], row4[inds[2]]))),
-					pow(-1, i+1) * det(mat3(vec3(row1[inds[0]], row1[inds[1]], row1[inds[2]]),
-							 vec3(row2[inds[0]], row2[inds[1]], row2[inds[2]]),
-							 vec3(row4[inds[0]], row4[inds[1]], row4[inds[2]]))),
-					pow(-1, i) * det(mat3(vec3(row1[inds[0]], row1[inds[1]], row1[inds[2]]),
-							 vec3(row2[inds[0]], row2[inds[1]], row2[inds[2]]),
-							 vec3(row3[inds[0]], row3[inds[1]], row3[inds[2]]))));
+							 				   vec3(row3[inds[0]], row3[inds[1]], row3[inds[2]]),
+							 				   vec3(row4[inds[0]], row4[inds[1]], row4[inds[2]]))),
+					   pow(-1, i) * det(mat3(vec3(row1[inds[0]], row1[inds[1]], row1[inds[2]]),
+							 				 vec3(row3[inds[0]], row3[inds[1]], row3[inds[2]]),
+							 			 	 vec3(row4[inds[0]], row4[inds[1]], row4[inds[2]]))),
+					   pow(-1, i+1) * det(mat3(vec3(row1[inds[0]], row1[inds[1]], row1[inds[2]]),
+							 				   vec3(row2[inds[0]], row2[inds[1]], row2[inds[2]]),
+							 				   vec3(row4[inds[0]], row4[inds[1]], row4[inds[2]]))),
+					   pow(-1, i) * det(mat3(vec3(row1[inds[0]], row1[inds[1]], row1[inds[2]]),
+							 				 vec3(row2[inds[0]], row2[inds[1]], row2[inds[2]]),
+							 				 vec3(row3[inds[0]], row3[inds[1]], row3[inds[2]]))));
 	}
 	float determ = det(toInv);
 	if (determ != 0){
@@ -247,16 +249,16 @@ float det(const mat4& toDet){
 	float ret = 0;
 	vec4 col1(toDet.col1), col2(toDet.col2), col3(toDet.col3), col4(toDet.col4);
 	ret += col1[0] * det(mat3(vec3(col2[1], col2[2], col2[3]),
-									vec3(col3[1], col3[2], col3[3]),
-									vec3(col4[1], col4[2], col4[3])));
+							  vec3(col3[1], col3[2], col3[3]),
+							  vec3(col4[1], col4[2], col4[3])));
 	ret -= col2[0] * det(mat3(vec3(col1[1], col1[2], col1[3]),
-									vec3(col3[1], col3[2], col3[3]),
-									vec3(col4[1], col4[2], col4[3])));
+							  vec3(col3[1], col3[2], col3[3]),
+							  vec3(col4[1], col4[2], col4[3])));
 	ret += col3[0] * det(mat3(vec3(col1[1], col1[2], col1[3]),
-									vec3(col2[1], col2[2], col2[3]),
-									vec3(col4[1], col4[2], col4[3])));
+							  vec3(col2[1], col2[2], col2[3]),
+							  vec3(col4[1], col4[2], col4[3])));
 	ret -= col4[0] * det(mat3(vec3(col1[1], col1[2], col1[3]),
-									vec3(col2[1], col2[2], col2[3]),
-									vec3(col3[1], col3[2], col3[3])));
+							  vec3(col2[1], col2[2], col2[3]),							  
+							  vec3(col3[1], col3[2], col3[3])));
 	return ret;
 }

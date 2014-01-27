@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 int main() {
-	puts("1..7");
+	puts("1..8");
 	mat4 A, B, C, I;
 	vec4 a, c;
 	I = mat4::identity();
@@ -45,5 +45,8 @@ int main() {
 			 vec4(6, 7, 1, 4));
 	if (transpose(B) != C) puts("not ok 7 - transpose");
 	else puts("ok 7 - transpose");
+	A = mat4::identity();
+	if (invert(A) != A) puts("not ok 8 - invert identity");
+	else puts("ok 8 - invert identity");
 	return 0;
 }
