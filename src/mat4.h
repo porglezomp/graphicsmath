@@ -13,12 +13,12 @@ struct mat4 {
 	mat4& operator+= (const mat4&);
 	mat4& operator-= (const mat4&);
 	mat4& operator*= (const mat4&);
-	//mat4& rotate(float, float, float, float);
+	mat4& rotate(float, const vec3&);
 	mat4& translate(float, float, float);
 	mat4& scale(float, float, float);
 	vec4 row(const int) const;
 	vec4 col(const int) const;
-	//mat4 rotationmatrix(float, float, float, float);
+	static mat4 rotationmatrix(float, const vec3&);
 	static mat4 translationmatrix(float, float, float);
 	static mat4 scalematrix(float, float, float);
 };
