@@ -9,15 +9,22 @@
 #define DEG2RAD	PI/180
 #define RAD2DEG	180/PI
 
+
+// ************
 // Constructors
+// ************
+
 mat3::mat3() : col1(0), col2(0), col3(0) { }
 mat3::mat3(vec3 a, vec3 b, vec3 c) {
 	col1 = vec3(a.x, b.x, c.x);
 	col2 = vec3(a.y, b.y, c.y);
 	col3 = vec3(a.z, b.z, c.z);
 }
-/*mat3::mat3(float v[]) {
-}*/
+mat3::mat3(float v[]) {
+	col1 = vec3(v[0], v[3], v[6]);
+	col2 = vec3(v[1], v[4], v[7]);
+	col3 = vec3(v[2], v[5], v[8]);
+}
 
 // Create an identity matrix
 mat3 mat3::identity() {
@@ -26,7 +33,11 @@ mat3 mat3::identity() {
 				vec3(0, 0, 1));
 }
 
-// Column indexing
+
+// ***************************
+// Various accessing functions
+// ***************************
+
 vec3& mat3::operator[](const int i) {
 	switch (i) {
 		case 0: return col1;
@@ -36,13 +47,6 @@ vec3& mat3::operator[](const int i) {
 	char errnum[32];
 	sprintf(errnum, "%i", i);
 	throw std::out_of_range(errnum + std::string(" out of range for mat3[]"));
-}
-
-bool operator== (const mat3 &lhs, const mat3 &rhs) {
-	return lhs.col1 == rhs.col1 && lhs.col2 == rhs.col2 && lhs.col3 == rhs.col3;
-}
-bool operator!= (const mat3 &lhs, const mat3 &rhs) {
-	return lhs.col1 != rhs.col1 || lhs.col2 != rhs.col2 || lhs.col3 != rhs.col3;
 }
 
 vec3 mat3::col(const int i) const {
@@ -55,6 +59,7 @@ vec3 mat3::col(const int i) const {
 	sprintf(errnum, "%i", i);
 	throw std::out_of_range(errnum + std::string(" out of range for mat3::col()"));
 }
+
 vec3 mat3::row(const int i) const {
 	switch (i) {
 		case 0: return vec3(col1.x, col2.x, col3.x);
@@ -65,6 +70,23 @@ vec3 mat3::row(const int i) const {
 	sprintf(errnum, "%i", i);
 	throw std::out_of_range(errnum + std::string(" out of range for mat3::row()"));
 }
+
+
+// ******************
+// Equality operators
+// ******************
+
+bool operator== (const mat3 &lhs, const mat3 &rhs) {
+	return lhs.col1 == rhs.col1 && lhs.col2 == rhs.col2 && lhs.col3 == rhs.col3;
+}
+bool operator!= (const mat3 &lhs, const mat3 &rhs) {
+	return lhs.col1 != rhs.col1 || lhs.col2 != rhs.col2 || lhs.col3 != rhs.col3;
+}
+
+
+// ********************
+// Arithmetic operators
+// ********************
 
 // Matrix addition/subtraction
 mat3& mat3::operator+= (const mat3 &b) {
@@ -123,17 +145,22 @@ mat3 transpose(const mat3 &m) {
 	return mat3(m.col(0), m.col(1), m.col(2));
 }
 
-// Transform matrices
+// ********************************
+// Generate transformation matrices
+// ********************************
+
 mat3 mat3::translationmatrix(float x, float y) {
 	return mat3(vec3(0, 0, x),
 				vec3(0, 0, y),
 				vec3(0, 0, 0));
 }
+
 mat3 mat3::scalematrix(float x, float y, float z) {
 	return mat3(vec3(x, 0, 0),
 				vec3(0, y, 0),
 				vec3(0, 0, z));
 }
+
 mat3 mat3::rotationmatrix(float theta) {
 	float rad = theta*DEG2RAD;
 	float co = cosf(rad);
@@ -143,9 +170,25 @@ mat3 mat3::rotationmatrix(float theta) {
 				vec3(0,   0,  0));
 }
 
-//mat3& mat3::rotate(float, float, float, float) {
-//
-//}
+mat3 mat3::rotationmatrix(float theta, const vec3 &axis) {
+	vec3 u = normalize(axis);
+	theta *= DEG2RAD;
+	double co = cos(theta), si = sin(theta);
+	return mat3(vec3(co + u.x*u.x*(1 - co),   u.x*u.y*(1 - co) - u.z*si,   u.x*u.z*(1 - co) + u.y*si),
+				vec3(u.y*u.x*(1 - co) + u.z*si,   co + u.y*u.y*(1 - co),   u.y*u.z*(1 - co) - u.x*si),
+				vec3(u.z*u.x*(1 - co) - u.y*si,   u.z*u.y*(1 - co) + u.x*si,   co + u.z*u.z*(1 - co)));
+}
+
+
+// *********************************
+// Functions that transform a matrix
+// *********************************
+
+mat3& mat3::rotate(float theta, const vec3 &axis) {
+	*this *= mat3::rotationmatrix(theta);
+	return *this;
+}
+
 mat3& mat3::rotate(float theta) {
 	*this *= mat3::rotationmatrix(theta);
 	return *this;
@@ -155,6 +198,7 @@ mat3& mat3::translate(float x, float y) {
 	(*this) *= mat3::translationmatrix(x, y);
 	return (*this);
 }
+
 mat3& mat3::scale(float x, float y, float z) {
 	(*this) *= mat3::scalematrix(x, y, z);
 	return (*this);
