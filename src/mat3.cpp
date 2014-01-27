@@ -70,7 +70,6 @@ vec3 mat3::getRow(const int i) const {
 }
 
 void mat3::setRow(const int i, const vec3& inRow){
-
 	col1[i] = inRow.x;
 	col2[i] = inRow.y;
 	col3[i] = inRow.z;	
@@ -153,7 +152,7 @@ mat3 operator* (const float lhs, mat3& rhs){
 
 // Transpose
 mat3 transpose(const mat3 &m) {
-	return mat3(m.getRow(0), m.getRow(1), m.getRow(2));
+	return mat3(m.getCol(0), m.getCol(1), m.getCol(2));
 }
 
 // Transform matrices
@@ -193,7 +192,7 @@ mat3& mat3::scale(float x, float y, float z) {
 	return (*this);
 }
 //calculate determinant of 3x3 matrix
-float det(const mat3& toDet){
+float det(const mat3 &m){
 	float ret = 0;
 	ret += toDet.col1.x * det(mat2(vec2(toDet.col2.y, toDet.col2.z), 
 							vec2(toDet.col3.y, toDet.col3.z)));
