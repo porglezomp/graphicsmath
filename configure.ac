@@ -15,10 +15,6 @@ AC_PROG_CC
 AC_PROG_RANLIB
 AM_PROG_AR
 AC_PROG_AWK
-AC_PATH_PROG(DOXYGEN, doxygen)
-if test -z "$DOXYGEN";
-	then AC_MSG_WARN([Doxygen not found - continuing without Doxygen support])
-fi
 
 # Checks for libraries.
 AC_SEARCH_LIBS([sqrtf], [m])
@@ -38,12 +34,7 @@ AC_CHECK_HEADER_STDBOOL
 
 # Checks for library functions.
 
-# If we have Doxygen, add the doxygen file
-AM_CONDITIONAL([HAVE_DOXYGEN], [test -n "$DOXYGEN"])
-AM_COND_IF([HAVE_DOXYGEN], [AC_CONFIG_FILES([docs/Doxyfile])])
-
 AC_CONFIG_FILES([Makefile
                  src/Makefile
-                 tests/Makefile
-                 docs/Makefile])
+                 tests/Makefile])
 AC_OUTPUT
