@@ -1,5 +1,5 @@
 #ifndef GRAPHICSMATH_MAT_MAT2_H
-#define GRPAHICSMATH_MAT_MAT2_H
+#define GRAPHICSMATH_MAT_MAT2_H
 
 #include "vec2.h"
 
@@ -33,6 +33,7 @@ vec2 operator* (vec2, const mat2&);
 vec2 operator* (const mat2&, vec2);
 mat2 operator* (mat2, const mat2&);
 mat2 transpose(const mat2&);
-mat2 invert(const mat2&);
 float det(const mat2&);
+mat2 invert(const mat2&);
+
 #endif

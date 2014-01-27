@@ -4,7 +4,7 @@
 #include <math.h>
 
 int main () {
-	puts("1..9");
+	puts("1..10");
 	mat3 A, B, C, I;
 	vec3 a = vec3(1, 2, 3);
 	I = mat3::identity();
@@ -41,5 +41,8 @@ int main () {
 	else puts("ok 8 - rotation matrix perpindicular");
 	if (mat3::rotationmatrix(45, vec3(1, 1, 0)) * a != vec3(.5, -.5, sqrtf(.5))) puts("not ok 9 - arbitrary rotation");
 	else puts("ok 9 - arbitrary rotation");
+	A = mat3::identity();
+	if (invert(A) != A) puts("not ok 10 - invert identity");
+	puts("ok 10 - invert identity");
 	return 0;
 }

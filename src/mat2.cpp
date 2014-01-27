@@ -86,7 +86,7 @@ vec2 mat2::col(const int i) const {
 	throw std::out_of_range(errnum + std::string(" out of range for col in vec2"));
 }
 
-float det(const mat2& toDet){
+float det(const mat2 &toDet){
 	float ret;
 	ret = toDet.col1.x * toDet.col2.y;
 	ret -= toDet.col1.y * toDet.col2.x;

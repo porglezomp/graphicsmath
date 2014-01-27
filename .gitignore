@@ -43,3 +43,6 @@ stamp-h1
 
 # Doxygen files
 docs/
+
+# Nano backups
+*.save
