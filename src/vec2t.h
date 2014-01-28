@@ -9,7 +9,7 @@
 
 // Forward-declare the needed types
 //struct vec4;
-//struct vec3;
+template <typename T> struct vec3t;
 //struct mat2;
 
 
@@ -30,7 +30,7 @@ public:
 /// @brief Conversion constructor from vec4.
 	//explicit vec2t(const vec4<T>&);
 /// @brief Conversion constructor from vec3.
-	//explicit vec2t(const vec3<T>&);
+	explicit vec2t(const vec3t<T>&);
 /**
  * @brief Subscript operator.
  * @param The index to the element (0 or 1)
@@ -162,7 +162,7 @@ template <typename T>
 T dot(const vec2t<T>&, const vec2t<T>&);
 
 // Include the implementation of the templates
-#include "vec2template.tpp"
+#include "vec2t.cpp"
 typedef vec2t<double> vec2d;
 typedef vec2t<float> vec2f;
 #ifdef GRAPHICSMATH_DEFAULT_DOUBLE

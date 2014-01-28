@@ -1,4 +1,4 @@
-#include "vec2template.h"
+#include "vec2t.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
