@@ -5,20 +5,15 @@
 template <typename T> struct vec2t;
 
 template <typename T>
-class vec3t {
-public:
+struct vec3t {
 	T x, y, z;
 // Constructors
 	vec3t();
 	vec3t(T);
 	vec3t(T, T, T);
-	vec3t(const vec3t<T>&);
-	template <typename U>
-	explicit vec3t(const vec3t<U>&);
 // Conversion constructors
 	//explicit vec3t(const vec4&);
-	template <typename U>
-	explicit vec3t(const vec2t<U>&);
+	vec3t(const vec2t<T>&);
 	vec3t(const vec2t<T>&, T);
 	vec3t(T, const vec2t<T>&);
 //Element indexing
@@ -93,12 +88,34 @@ template <typename T>
 vec3t<T> cross(const vec3t<T>&, const vec3t<T>&);
 
 #include "vec3t.cpp"
-typedef vec3t<double> vec3d;
-typedef vec3t<float> vec3f;
+struct vec3d;
+struct vec3f : public vec3t<float> {
+	vec3f() : vec3t<float>() { }
+	vec3f(float x) : vec3t<float>(x) { }
+	vec3f(float x, float y, float z) : vec3t<float>(x, y, z) { }
+	vec3f(const vec2t<float> &v) : vec3t<float>(v) { }
+	vec3f(const vec2t<float> &v, float z) : vec3t<float>(v, z) { }
+	vec3f(float x, const vec2t<float> &v) : vec3t<float>(x, v) { }
+	explicit vec3f(const vec3d&);
+};
+
+struct vec3d : public vec3t<double> {
+	vec3d() : vec3t<double>() { }
+	vec3d(double x) : vec3t<double>(x) { }
+	vec3d(double x, double y, double z) : vec3t<double>(x, y, z) { }
+	vec3d(const vec2t<double> &v) : vec3t<double>(v) { }
+	vec3d(const vec2t<double> &v, double z) : vec3t<double>(v, z) { }
+	vec3d(double x, const vec2t<double> &v) : vec3t<double>(x, v) { }
+	vec3d(const vec3f &v) : vec3t<double>(v.x, v.y, v.z) { }
+};
+
+vec3f::vec3f(const vec3d &v) : vec3t<float>(v.x, v.y, v.z) { };
+
+// Set a default type for vec3
 #ifdef GRAPHICSMATH_DEFAULT_DOUBLE
-typedef vec3t<double> vec3;
-#else
-typedef vec3t<float> vec3;
+typedef vec3d vec3;
+#else // If not specified, float is the default
+typedef vec3f vec3;
 #endif
 
 #endif

@@ -14,8 +14,7 @@ template <typename T> struct vec3t;
 
 
 template <typename T>
-class vec2t {
-public: 
+struct vec2t {
 	T x; /// @brief The x (first) component of the vector 
 	T y; /// @brief The y (second) component of the vector
 /// @brief The default constructor, which produces the zero vector.

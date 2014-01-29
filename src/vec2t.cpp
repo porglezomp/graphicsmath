@@ -1,5 +1,5 @@
-//#include "vec4.h"
-//#include "vec3.h"
+#include "vec3t.h"
+#include "vec4t.h"
 //#include "mat2.h"
 #include "math.h"
 #include <stdexcept>
@@ -120,7 +120,7 @@ vec2t<T> operator/ (vec2t<T> a, const vec2t<T> &b) {
 }
 
 // Scalar division of the vector
-template <typename T>
+template <typename T> 
 vec2t<T>& vec2t<T>::operator/= (const T s) {
 	x /= s; y /= s;
 	return *this;

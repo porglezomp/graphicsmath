@@ -1,5 +1,5 @@
-//#include "vec4.h"
 #include "vec2t.h"
+#include "vec4t.h"
 #include "math.h"
 #include <stdexcept>
 #include <string>
@@ -13,16 +13,11 @@ vec3t<T>::vec3t(T v) : x(v), y(v), z(v) { }
 template <typename T>
 vec3t<T>::vec3t(T x, T y, T z) : x(x), y(y), z(z) { }
 
-template <typename T>
-vec3t<T>::vec3t(const vec3t<T> &v) : x(v.x), y(v.y), z(v.z) { }
-template <typename T> template <typename U>
-vec3t<T>::vec3t(const vec3t<U> &v) : x(v.x), y(v.y), z(v.z) { }
-
 // Conversion constructors
 //template <typename T>
 //vec3t<T>::vec3t(const vec4 &v) : x(v.x), y(v.y), z(v.z) { }
-template <typename T> template <typename U>
-vec3t<T>::vec3t(const vec2t<U> &v) : x(v.x), y(v.y), z(0) { }
+template <typename T>
+vec3t<T>::vec3t(const vec2t<T> &v) : x(v.x), y(v.y), z(0) { }
 template <typename T>
 vec3t<T>::vec3t(const vec2t<T> &v, T z) : x(v.x), y(v.y), z(z) { }
 template <typename T>
@@ -61,14 +56,14 @@ template <typename T>
 vec3t<T> operator+ (vec3t<T> a, const vec3t<T> &b) {
 	return a += b;
 }
-// Explicit addition for mixed vec3t<T>/vec2 addition
-// Without this, behavior would be somewhat unpredictable (could return either a vec3t<T> or vec2)
+// Explicit addition for mixed vec3t<T>/vec2t<T> addition
+// Without this, behavior would be somewhat unpredictable (could return either a vec3t<T> or vec2t<T>)
 template <typename T>
-vec3t<T> operator+ (const vec3t<T> &a, const vec2 &b) {
+vec3t<T> operator+ (const vec3t<T> &a, const vec2t<T> &b) {
 	return a + vec3t<T>(b);
 }
 template <typename T>
-vec3t<T> operator+ (const vec2 &a, const vec3t<T> &b) {
+vec3t<T> operator+ (const vec2t<T> &a, const vec3t<T> &b) {
 	return vec3t<T>(a) + b;
 }
 
@@ -82,13 +77,13 @@ template <typename T>
 vec3t<T> operator- (vec3t<T> a, const vec3t<T> &b) {
 	return a -= b;
 }
-// Explicit subtraction for vec3t<T> - vec2 & vec2 - vec3t<T>
+// Explicit subtraction for vec3t<T> - vec2t<T> & vec2t<T> - vec3t<T>
 template <typename T>
-vec3t<T> operator- (const vec3t<T> &a, const vec2 &b) {
+vec3t<T> operator- (const vec3t<T> &a, const vec2t<T> &b) {
 	return a - vec3t<T>(b);
 }
 template <typename T>
-vec3t<T> operator- (const vec2 &a, const vec3t<T> &b) {
+vec3t<T> operator- (const vec2t<T> &a, const vec3t<T> &b) {
 	return vec3t<T>(a) - b;
 }
 

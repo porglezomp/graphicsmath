@@ -4,8 +4,8 @@ LOG_DRIVER = env AM_TAP_AWK='$(AWK)' $(SHELL) \
                   $(top_srcdir)/build-aux/tap-driver.sh
 
 AM_CPPFLAGS=-I$(top_builddir)/src
-## Test suite
 LDADD = ../src/lib@libfilename@.a
+## Test suite
 check_PROGRAMS = Vec2Test.exe Vec3Test.exe Vec4Test.exe Mat2Test.exe Mat3Test.exe Mat4Test.exe
 
 Vec2Test_exe_SOURCES = vec2test.cpp

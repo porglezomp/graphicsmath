@@ -10,6 +10,7 @@ int main() {
 	vec3 a, b, c;
 	test(vec3(1) == vec3(1, 1, 1), "single component constructor");
 	test(vec3f(vec3d(1)) == vec3f(1), "type conversion double -> float");
+	test(vec3f(1) == vec3d(1), "comparison double -> float");
 	test(vec3(vec2(1, 2)) == vec3(1, 2, 0), "conversion from vec2");
 	a = 0; b = 1; c = 1;
 	test(a + b == c, "basic addition");
