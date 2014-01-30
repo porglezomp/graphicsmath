@@ -245,12 +245,12 @@ mat3& mat3::scale(float x, float y, float z) {
 //calculate determinant of 3x3 matrix
 float det(const mat3 &m){
 	float ret = 0;
-	ret += m.col1.x * det(mat2(vec2(m.col2.y, m.col2.z), 
+	ret += m.col1.x * det(mat2(vec2(m.col2.y, m.col2.z),
 							vec2(m.col3.y, m.col3.z)));
-	
-	ret -= m.col2.x * det(mat2(vec2(m.col1.y, m.col1.z), 
+
+	ret -= m.col2.x * det(mat2(vec2(m.col1.y, m.col1.z),
 							vec2(m.col3.y, m.col3.z)));
-	
+
 	ret += m.col3.x * det(mat2(vec2(m.col1.y, m.col1.z),
 							vec2(m.col2.y, m.col2.z)));
 	return ret;
@@ -268,13 +268,13 @@ mat3 invert(const mat3& toInv){
 				det(mat2(vec2(row1[1], row1[2]), 
 				vec2(row2[1], row2[2]))));
 	col2 = vec3(-1.0 * det(mat2(vec2(row2[0], row2[2]), 
-				vec2(row3[0], row2[2]))),
+				vec2(row3[0], row3[2]))),
 				det(mat2(vec2(row1[0], row1[2]), 
 				vec2(row3[0], row3[2]))),
 				-1.0 * det(mat2(vec2(row1[0], row1[2]), 
 				vec2(row2[0], row2[2]))));
 	col3 = vec3(det(mat2(vec2(row2[0], row2[1]), 
-				vec2(row3[0], row2[1]))),
+				vec2(row3[0], row3[1]))),
 				-1.0 * det(mat2(vec2(row1[0], row1[1]), 
 				vec2(row3[0], row3[1]))),
 				det(mat2(vec2(row1[0], row1[1]), 
