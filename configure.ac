@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([graphicsmath], [0.7.3], [bugs.adventurous@gmail.com])
+AC_INIT([graphicsmath], [0.8.1], [bugs.adventurous@gmail.com])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_REQUIRE_AUX_FILE([tap-driver.sh])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
@@ -20,7 +20,7 @@ AM_PROG_AR
 AC_PROG_AWK
 AC_PATH_PROG(DOXYGEN, doxygen)
 if test -z "$DOXYGEN";
-	then AC_MSG_WARN([Doxygen not found - continuing without Doxygen support])
+        then AC_MSG_WARN([Doxygen not found - continuing without Doxygen support])
 fi
 
 # Checks for libraries.
@@ -41,8 +41,6 @@ AC_CHECK_HEADERS([math.h])
 AC_CHECK_HEADER_STDBOOL
 
 # Checks for library functions.
-
-# If we have Doxygen, add the doxygen file
 AM_CONDITIONAL([HAVE_DOXYGEN], [test -n "$DOXYGEN"])
 AM_COND_IF([HAVE_DOXYGEN], [AC_CONFIG_FILES([docs/Doxyfile])])
 

@@ -59,11 +59,11 @@ mat2& mat2::operator*= (const float rhs){
 	return *this;
 }
 mat2& mat2::rotate(float theta) {
-	*this *= mat2rotation(theta);
+	*this *= mat2::rotationmatrix(theta);
 	return *this;
 }
 mat2& mat2::scale(float x, float y) { 
-	*this *= mat2scale(x, y);
+	*this *= mat2::scalematrix(x, y);
 	return *this;
 }
 
@@ -86,7 +86,7 @@ vec2 mat2::col(const int i) const {
 	throw std::out_of_range(errnum + std::string(" out of range for col in vec2"));
 }
 
-float det(const mat2& toDet){
+float det(const mat2 &toDet){
 	float ret;
 	ret = toDet.col1.x * toDet.col2.y;
 	ret -= toDet.col1.y * toDet.col2.x;
@@ -132,7 +132,7 @@ mat2 transpose(const mat2 &m) {
 	return mat2(m.col1, m.col2);
 }
 
-mat2 mat2rotation(float theta)  {
+mat2 mat2::rotationmatrix(float theta)  {
 	float rads = theta*DEG2RAD;
 	float co = cosf(rads);
 	float si = sinf(rads);
@@ -140,7 +140,7 @@ mat2 mat2rotation(float theta)  {
 				vec2(si,  co));
 }
 
-mat2 mat2scale(float x, float y) {
+mat2 mat2::scalematrix(float x, float y) {
 	return mat2(vec2(x, 0),
 				vec2(0, y));
 }

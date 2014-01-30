@@ -1,10 +1,10 @@
 #include "vec3.h"
 #include "mat3.h"
 #include <stdio.h>
-
+#include <math.h>
 
 int main () {
-	puts("1..6");
+	puts("1..10");
 	mat3 A, B, C, I;
 	vec3 a = vec3(1, 2, 3);
 	I = mat3::identity();
@@ -34,5 +34,15 @@ int main () {
 							 vec3(2, 5, 8),
 							 vec3(3, 6, 9))) puts("not ok 6 - transpose");		  
 	else puts("ok 6 - transpose");
+	a = vec3(0, 0, 1);
+	if (a * mat3::rotationmatrix(14, vec3(0, 0, 1)) != a) puts("not ok 7 - rotation matrix parallel");
+	else puts("ok 7 - rotation matrix parallel");
+	if (dot(mat3::rotationmatrix(90, vec3(0, 1, 0)) * a, vec3(1, 0, 0)) < 1) puts("not ok 8 - rotation matrix perpindicular");
+	else puts("ok 8 - rotation matrix perpindicular");
+	if (mat3::rotationmatrix(45, vec3(1, 1, 0)) * a != vec3(.5, -.5, sqrtf(.5))) puts("not ok 9 - arbitrary rotation");
+	else puts("ok 9 - arbitrary rotation");
+	A = mat3::identity();
+	if (invert(A) != A) puts("not ok 10 - invert identity");
+	puts("ok 10 - invert identity");
 	return 0;
 }

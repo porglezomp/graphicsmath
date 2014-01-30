@@ -1,9 +1,11 @@
 #include "mat4.h"
 #include "vec4.h"
+#include "mat3.h"
 #include <stdio.h>
+#include "math.h"
 
 int main() {
-	puts("1..7");
+	puts("1..11");
 	mat4 A, B, C, I;
 	vec4 a, c;
 	I = mat4::identity();
@@ -45,5 +47,16 @@ int main() {
 			 vec4(6, 7, 1, 4));
 	if (transpose(B) != C) puts("not ok 7 - transpose");
 	else puts("ok 7 - transpose");
+	a = vec4(0, 0, 1, 1);
+	const vec3 temp = vec3(0, 0, 1);
+	if (a * mat4::rotationmatrix(14, temp) != a) puts("not ok 8 - rotation matrix parallel");
+	else puts("ok 8 - rotation matrix parallel");
+	if (dot(mat4::rotationmatrix(90, vec3(0, 1, 0)) * a, vec4(1, 0, 0, 1)) < 1) puts("not ok 9 - rotation matrix perpindicular");
+	else puts("ok 9 - rotation matrix perpindicular");
+	if (vec3(mat4::rotationmatrix(45, vec3(1, 1, 0)) * a) != vec3(.5, -.5, sqrtf(.5))) puts("not ok 10 - arbitrary rotation");
+	else puts("ok 10 - arbitrary rotation");
+	A = mat4::identity();
+	if (invert(A) != A) puts("not ok 11 - invert identity");
+	else puts("ok 11 - invert identity");
 	return 0;
 }

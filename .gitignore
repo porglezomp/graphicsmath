@@ -38,5 +38,11 @@ config.h*
 build-aux/
 stamp-h1
 
+# Sublime text items
+*.sublime-*
+
 # Doxygen files
 docs/
+
+# Nano backups
+*.save
