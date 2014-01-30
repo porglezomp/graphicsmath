@@ -93,12 +93,12 @@ float det(const mat2 &toDet){
 	return ret;
 }
 
-mat2 invert(const mat2& toInvert){
-	float determinant = det(toInvert);
+mat2 invert(const mat2& m){
+	float determinant = det(m);
 	if (determinant == 0){
 		throw singular_matrix();
 	}
-	return (1/determinant) * toInvert;
+	return (1/determinant) * mat2(m.col2.y, -m.col1.y, -m.col2.x, m.col1.x);
 }
 
 mat2 operator+ (mat2 a, const mat2 &b) {
