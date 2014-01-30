@@ -5,6 +5,7 @@
 #include <string>
 #include <stdio.h>
 #include <math.h>
+#include <iostream>
 #include "gm_exception.h"
 
 // Constructors
@@ -231,28 +232,27 @@ mat4 invert(const mat4& toInv){
 		int inds[3];
 		int ct = 0;
 		//find which column must be ommitted
-		for (int j = 0; j < 3; j++){
+		for (int j = 0; j < 4; j++){
 			if (j!=i){
 				// FIXME: Sometimes the index doesn't get initialized, causes an exception
 				inds[ct] = j;
 				ct += 1;
-			}
+			}		
 		}
-
 		//Following defines the cofactor matrix as the componentwise multiplication of
 		//the coefficient matrix and the matrix of minors.
 
 		//all cols will have identical ommitted rows for minors.
-		cols[i] = vec4(pow(-1, i+1) * det(mat3(vec3(row2[inds[0]], row2[inds[1]], row2[inds[2]]),
+		cols[i] = vec4(pow(-1.0, i) * det(mat3(vec3(row2[inds[0]], row2[inds[1]], row2[inds[2]]),
 							 				   vec3(row3[inds[0]], row3[inds[1]], row3[inds[2]]),
 							 				   vec3(row4[inds[0]], row4[inds[1]], row4[inds[2]]))),
-					   pow(-1, i) * det(mat3(vec3(row1[inds[0]], row1[inds[1]], row1[inds[2]]),
+					   pow(-1, i+1) * det(mat3(vec3(row1[inds[0]], row1[inds[1]], row1[inds[2]]),
 							 				 vec3(row3[inds[0]], row3[inds[1]], row3[inds[2]]),
 							 			 	 vec3(row4[inds[0]], row4[inds[1]], row4[inds[2]]))),
-					   pow(-1, i+1) * det(mat3(vec3(row1[inds[0]], row1[inds[1]], row1[inds[2]]),
+					   pow(-1, i) * det(mat3(vec3(row1[inds[0]], row1[inds[1]], row1[inds[2]]),
 							 				   vec3(row2[inds[0]], row2[inds[1]], row2[inds[2]]),
 							 				   vec3(row4[inds[0]], row4[inds[1]], row4[inds[2]]))),
-					   pow(-1, i) * det(mat3(vec3(row1[inds[0]], row1[inds[1]], row1[inds[2]]),
+					   pow(-1, i+1) * det(mat3(vec3(row1[inds[0]], row1[inds[1]], row1[inds[2]]),
 							 				 vec3(row2[inds[0]], row2[inds[1]], row2[inds[2]]),
 							 				 vec3(row3[inds[0]], row3[inds[1]], row3[inds[2]]))));
 	}
