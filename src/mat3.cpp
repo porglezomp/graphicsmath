@@ -1,12 +1,14 @@
 #include "mat3.h"
+
+#include <math.h>
+#include <stdio.h>
+#include <stdexcept>
+#include <string>
+
 #include "vec3.h"
 #include "mat2.h"
 #include "vec2.h"
 #include "gm_exception.h"
-#include <stdexcept>
-#include <math.h>
-#include <string>
-#include <stdio.h>
 
 #define PI	3.141592654
 #define DEG2RAD	PI/180

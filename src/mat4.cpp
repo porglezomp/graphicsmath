@@ -1,12 +1,14 @@
 #include "mat4.h"
-#include "vec4.h"
-#include "mat3.h"
+
+#include <math.h>
+#include <stdio.h>
 #include <stdexcept>
 #include <string>
-#include <stdio.h>
-#include <math.h>
 #include <iostream>
+
 #include "gm_exception.h"
+#include "vec4.h"
+#include "mat3.h"
 
 // Constructors
 mat4::mat4() : col1(0), col2(0), col3(0), col4(0) { }

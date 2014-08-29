@@ -1,11 +1,12 @@
 #include "vec3.h"
 
-#include "vec4.h"
-#include "vec2.h"
-#include "math.h"
+#include <math.h>
+#include <stdio.h>
 #include <stdexcept>
 #include <string>
-#include <stdio.h>
+
+#include "vec4.h"
+#include "vec2.h"
 
 // Constructors
 vec3::vec3() : x(0), y(0), z(0) { }

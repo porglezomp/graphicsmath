@@ -1,12 +1,13 @@
 #include "vec2.h"
 
+#include <math.h>
+#include <stdio.h>
+#include <stdexcept>
+#include <string>
+
 #include "vec4.h"
 #include "vec3.h"
 #include "mat2.h"
-#include "math.h"
-#include <stdexcept>
-#include <string>
-#include <stdio.h>
 
 #define PI	3.141592654
 #define RAD2DEG	180/PI

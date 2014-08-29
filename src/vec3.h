@@ -1,5 +1,5 @@
-#ifndef GRAPHICSMATH_VEC_VEC3_H
-#define GRAPHICSMATH_VEC_VEC3_H
+#ifndef GRAPHICSMATH_VEC_VEC3_H_
+#define GRAPHICSMATH_VEC_VEC3_H_
 
 struct vec4;
 struct vec2;
