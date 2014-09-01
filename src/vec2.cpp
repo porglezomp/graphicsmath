@@ -131,3 +131,7 @@ float angle(const vec2 &v) {
 float dot(const vec2 &a, const vec2 &b) {
 	return a.x*b.x + a.y*b.y;
 }
+
+vec2 lerp(const vec2 &a, const vec2 &b, float x) {
+	return a + x*(b - a);
+}

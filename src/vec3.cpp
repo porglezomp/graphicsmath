@@ -142,3 +142,7 @@ vec3 cross(const vec3 &lhs, const vec3& rhs) {
 				lhs.z*rhs.x - lhs.x*rhs.z,
 				lhs.x*rhs.y - lhs.y*rhs.x);
 }
+
+vec3 lerp(const vec3 &a, const vec3 &b, float x) {
+	return a + x*(b - a);
+}

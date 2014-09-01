@@ -145,4 +145,7 @@ float angle(const vec2&);
 /// Compute the dot product of two vectors
 float dot(const vec2&, const vec2&);
 
+/// Linearly inerpolate between two vectors
+vec2 lerp(const vec2&, const vec2&, float);
+
 #endif

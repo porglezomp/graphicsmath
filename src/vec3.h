@@ -68,4 +68,6 @@ float dot(const vec3&, const vec3&);
 /// Cross product
 vec3 cross(const vec3&, const vec3&);
 
+vec3 lerp(const vec3&, const vec3&, float);
+
 #endif

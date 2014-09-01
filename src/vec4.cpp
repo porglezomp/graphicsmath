@@ -158,3 +158,7 @@ vec4 normalize(const vec4 &v) {
 float dot(const vec4 &a, const vec4 &b) {
 	return a.x*b.x + a.y*b.y + a.z*b.z + a.w*b.w;
 }
+
+vec4 lerp(const vec4 &a, const vec4 &b, float x) {
+	return a + x*(b - a);
+}

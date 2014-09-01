@@ -72,4 +72,6 @@ vec4 normalize(const vec4&);
 //Dot product
 float dot(const vec4&, const vec4&);
 
+vec4 lerp(const vec4&, const vec4&, float);
+
 #endif
